@@ -18,14 +18,14 @@
     }
 </style>
 
-<div class="modal fade" id="editUserRole" data-bs-backdrop="static" tabindex="-1" role="dialog"
-    aria-labelledby="editUserRole" aria-hidden="true">
+<div class="modal fade" id="editUserLevel" data-bs-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="editUserLevel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content" id="userRoleModalContent">
+        <div class="modal-content" id="userLevelModalContent">
             <div class="modal-header">
                 <h5 class="modal-title">
                     <i class="bi bi-plus"></i>
-                    Edit User Role
+                    Edit User Level
                 </h5>
                 <!--begin::Close-->
                 <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
@@ -38,14 +38,14 @@
                 <div class="formAlertDiv">
 
                 </div>
-                <form class="form" id="edit_user_role_form">
+                <form class="form" id="edit_user_level_form">
                     <input type="hidden" name="id">
                     <div class="row mb-6">
-                        <label class="col-lg-2 col-form-label fw-bold fs-6">Role Name<span
+                        <label class="col-lg-2 col-form-label fw-bold fs-6">Level Name<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-10 fv-row">
                             <input type="text" name="name" class="form-control form-control-lg form-control-solid"
-                                placeholder="Enter Role Name">
+                                placeholder="Enter Level Name">
                         </div>
                     </div>
                     <div class="fv-row mb-6">
@@ -96,7 +96,7 @@
                                 <label class="form-check form-check-custom form-check-solid">
                                     <input class="form-check-input n1_tools" type="checkbox" name="n2_user_roles"
                                         value="1" checked />
-                                    <span class="form-check-label fw-bold text-gray-700 fs-6">Manage User Roles
+                                    <span class="form-check-label fw-bold text-gray-700 fs-6">Manage User Levels
                                     </span>
                                 </label>
                             </div>
@@ -109,9 +109,9 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-danger font-weight-bold"
                             data-bs-dismiss="modal">Close</button>
-                        <button type="submit" id="editUserRoleSubmitBtn" class="btn btn-primary font-weight-bold">Edit
+                        <button type="submit" id="editUserLevelSubmitBtn" class="btn btn-primary font-weight-bold">Edit
                             User
-                            Role</button>
+                            Level</button>
                     </div>
                 </form>
             </div>

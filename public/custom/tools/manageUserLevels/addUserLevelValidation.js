@@ -1,9 +1,9 @@
 // Class definition
-var addUserRoleValidation = (function () {
+var addUserLevelValidation = (function () {
     // Private functions
     var initDatatable = function () {
         const fv = FormValidation.formValidation(
-            document.getElementById("add_user_role_form"),
+            document.getElementById("add_user_level_form"),
             {
                 fields: {
                     first_name: {
@@ -43,20 +43,20 @@ var addUserRoleValidation = (function () {
             // Show loading indication
 
             document
-                .getElementById("addUserRoleSubmitBtn")
+                .getElementById("addUserLevelSubmitBtn")
                 .setAttribute("data-kt-indicator", "on");
 
             // Disable button to avoid multiple click
-            document.getElementById("addUserRoleSubmitBtn").disabled = true;
+            document.getElementById("addUserLevelSubmitBtn").disabled = true;
 
             // Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-            var formx = $("#add_user_role_form")[0]; // You need to use standart javascript object here
+            var formx = $("#add_user_level_form")[0]; // You need to use standart javascript object here
             var formDatax = new FormData(formx);
-            var userRoleAddRoute = $("#addUserRoleSubmitBtn").data(
-                "user-role-add-route"
+            var userLevelAddRoute = $("#addUserLevelSubmitBtn").data(
+                "user-level-add-route"
             );
             $.ajax({
-                url: userRoleAddRoute,
+                url: userLevelAddRoute,
                 type: "POST",
                 data: formDatax,
                 contentType: false,
@@ -89,13 +89,13 @@ var addUserRoleValidation = (function () {
                         };
 
                         toastr.success(data.message, "Success");
-                        $("#add_user_role_form").trigger("reset");
-                        // $('#add_user_role_form [name="supervisor_id"]').val('').trigger('change');
-                        // $('#add_user_role_form [name="crm_user_group_id"]').val('').trigger('change');
-                        // $('#add_user_role_form [name="user_level_id"]').val('').trigger('change');
-                        $("#addUserRole").modal("toggle");
-                        $("#user_role_dt").DataTable().ajax.reload();
-                        // $("#add_user_role_form .userImagePreview").html("");
+                        $("#add_user_level_form").trigger("reset");
+                        // $('#add_user_level_form [name="supervisor_id"]').val('').trigger('change');
+                        // $('#add_user_level_form [name="crm_user_group_id"]').val('').trigger('change');
+                        // $('#add_user_level_form [name="user_level_id"]').val('').trigger('change');
+                        $("#addUserLevel").modal("toggle");
+                        $("#user_level_dt").DataTable().ajax.reload();
+                        // $("#add_user_level_form .userImagePreview").html("");
                     } else {
                         Swal.fire({
                             text: data.message,
@@ -109,10 +109,10 @@ var addUserRoleValidation = (function () {
                         // window.location.reload();
                     }
                     document
-                        .getElementById("addUserRoleSubmitBtn")
+                        .getElementById("addUserLevelSubmitBtn")
                         .setAttribute("data-kt-indicator", "off");
                     document.getElementById(
-                        "addUserRoleSubmitBtn"
+                        "addUserLevelSubmitBtn"
                     ).disabled = false;
                     //  event.preventDefault();
                 },
@@ -124,10 +124,10 @@ var addUserRoleValidation = (function () {
                         $("#" + field + "_error").html(errors[field][0]);
                     }
                     document
-                        .getElementById("addUserRoleSubmitBtn")
+                        .getElementById("addUserLevelSubmitBtn")
                         .setAttribute("data-kt-indicator", "off");
                     document.getElementById(
-                        "addUserRoleSubmitBtn"
+                        "addUserLevelSubmitBtn"
                     ).disabled = false;
                     // Show the error box
                     $(".error-box").show();
@@ -147,21 +147,21 @@ var addUserRoleValidation = (function () {
 
 jQuery(document).ready(function () {
     //DONT FOGET THIS!!!
-    addUserRoleValidation.init();
+    addUserLevelValidation.init();
     // event.preventDefault();
-    jQuery(document).off("change", '#add_user_role_form [type="checkbox"]');
+    jQuery(document).off("change", '#add_user_level_form [type="checkbox"]');
     jQuery(document).on(
         "change",
-        '#add_user_role_form [type="checkbox"]',
+        '#add_user_level_form [type="checkbox"]',
         function (e) {
             console.log($(this).is(":checkbox"));
             var thisname = $(this).attr("name");
             if ($(this).is(":checked")) {
-                $("#add_user_role_form ." + thisname)
+                $("#add_user_level_form ." + thisname)
                     .slideDown(250)
                     .prop("checked", true);
             } else {
-                $("#add_user_role_form ." + thisname)
+                $("#add_user_level_form ." + thisname)
                     .slideUp(250)
                     .prop("checked", false);
             }

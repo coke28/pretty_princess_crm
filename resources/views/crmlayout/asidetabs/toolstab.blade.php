@@ -14,8 +14,8 @@
 
         @if(auth()->user()->userlevel->n2_users == 1)
         <div class="menu-item">
-            <a class="menu-link {{ rvndev()->getActiveNavClass('page', 'admin.user.index')['main'] }}"
-                href="{{ route('admin.user.index', [], false) }}">
+            <a class="menu-link {{ rvndev()->getActiveNavClass('page', 'user.index')['main'] }}"
+                href="{{ route('user.index', [], false) }}">
                 <span class="menu-icon">
                     {!! theme()->getSvgIcon('icons/duotone/Design/PenAndRuller.svg', "svg-icon-2") !!}
                 </span>
@@ -25,12 +25,12 @@
         @endif
         @if(auth()->user()->userlevel->n2_user_roles == 1)
         <div class="menu-item">
-            <a class="menu-link {{ rvndev()->getActiveNavClass('page', 'admin.userRole.index')['main'] }}"
-                href="{{ route('admin.userRole.index', [], false) }}">
+            <a class="menu-link {{ rvndev()->getActiveNavClass('page', 'userLevel.index')['main'] }}"
+                href="{{ route('userLevel.index', [], false) }}">
                 <span class="menu-icon">
                     {!! theme()->getSvgIcon('icons/duotone/Design/PenAndRuller.svg', "svg-icon-2") !!}
                 </span>
-                <span class="menu-title">Manage User Roles</span>
+                <span class="menu-title">Manage User Levels</span>
             </a>
         </div>
         @endif

@@ -13,8 +13,8 @@ var KTDatatablesServerSide = (function () {
 
     // Private functions
     var initDatatable = function () {
-        var userRoleTableRoute = $("#user_role_dt").data("table-route");
-        dt = $("#user_role_dt").DataTable({
+        var userLevelTableRoute = $("#user_level_dt").data("table-route");
+        dt = $("#user_level_dt").DataTable({
             searchDelay: 500,
             processing: true,
             serverSide: true,
@@ -26,12 +26,12 @@ var KTDatatablesServerSide = (function () {
                 "<'row'<'col-sm-1 'l><'col-sm-4 mt-2'i><'col-sm-7'p>>",
             buttons: ["copyHtml5", "excelHtml5", "csvHtml5", "pdfHtml5"],
             search: {
-                input: $("#userRoleSearch"),
+                input: $("#userLevelSearch"),
                 key: "dtsearch",
             },
             ajax: {
                 //   url: "/admin/userTB",
-                url: userRoleTableRoute,
+                url: userLevelTableRoute,
                 type: "POST",
                 beforeSend: function (request) {
                     request.setRequestHeader(
@@ -75,16 +75,16 @@ var KTDatatablesServerSide = (function () {
             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-150px py-4" data-kt-menu="true">
                 <!--begin::Menu item-->
                 <div class="menu-item px-3">
-                    <a href="#" class="menu-link px-3" data-kt-docs-table-filter="edit_row" id="edit_user_role_btn" data-id="` +
+                    <a href="#" class="menu-link px-3" data-kt-docs-table-filter="edit_row" id="edit_user_level_btn" data-id="` +
                             data.id +
-                            `" data-bs-toggle="modal" data-bs-target="#editUserRole">
+                            `" data-bs-toggle="modal" data-bs-target="#editUserLevel">
                         Edit
                     </a>
                 </div>
                 <!--end::Menu item-->
                 <!--begin::Menu item-->
                 <div class="menu-item px-3">
-                    <a href="#" id="delete_user_role" data-id="` +
+                    <a href="#" id="delete_user_level" data-id="` +
                             data.id +
                             `" data-name="` +
                             data.name +
@@ -112,7 +112,7 @@ var KTDatatablesServerSide = (function () {
 
     // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
     var handleSearchDatatable = function () {
-        const filterSearch = document.querySelector("#userRoleSearch");
+        const filterSearch = document.querySelector("#userLevelSearch");
         filterSearch.addEventListener("keyup", function (e) {
             dt.search(e.target.value).draw();
         });
@@ -131,10 +131,10 @@ var KTDatatablesServerSide = (function () {
 KTUtil.onDOMContentLoaded(function () {
     KTDatatablesServerSide.init();
 
-    jQuery(document).off("change", "#userRoleSearch");
-    jQuery(document).on("change", "#userRoleSearch", function (e) {
+    jQuery(document).off("change", "#userLevelSearch");
+    jQuery(document).on("change", "#userLevelSearch", function (e) {
         if ($(this).val().length == 0) {
-            $("#user_dt").DataTable().search($("#userRoleSearch").val()).draw();
+            $("#user_level_dt").DataTable().search($("#userLevelSearch").val()).draw();
         }
     });
 

@@ -50,8 +50,8 @@
                         <label class="col-lg-2 col-form-label fw-bold fs-6">User Level</label>
                         <div class="col-lg-10 fv-row">
                             <select class="form-control selectpicker" name="user_level_id" id="user_level_id">
-                                @foreach ($userRoles as $userRole )
-                                <option value="{{ $userRole->id }}">{{ $userRole->name  }}</option>
+                                @foreach ($userLevels as $userLevel )
+                                <option value="{{ $userLevel->id }}">{{ $userLevel->name  }}</option>
                                 @endforeach
                             </select>
                         </div>

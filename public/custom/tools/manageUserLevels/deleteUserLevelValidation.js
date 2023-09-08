@@ -1,7 +1,7 @@
 $(document).ready(function (){
 
-    jQuery(document).off('click', '#delete_user_role');
-    jQuery(document).on('click', '#delete_user_role', function(e) {
+    jQuery(document).off('click', '#delete_user_level');
+    jQuery(document).on('click', '#delete_user_level', function(e) {
       e.preventDefault();
       var id = $(this).data('id');
         //makes sent data name in dt to lowercase
@@ -20,13 +20,13 @@ $(document).ready(function (){
       }).then(function (result) {
 
           if(result.isConfirmed){
-            var target = document.querySelector("#user_role_dt");
+            var target = document.querySelector("#user_level_dt");
             var blockUI = new KTBlockUI(target, {
                 message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
             });
             blockUI.block();
             $.ajax({
-              url: "/admin/userRole/delete/"+id,
+              url: "/userLevel/delete/"+id,
               type: "POST",
               contentType: false,
               cache: false,
@@ -51,10 +51,10 @@ $(document).ready(function (){
                  "hideMethod": "fadeOut"
                };
 
-               toastr.success(data, "Success");
+               toastr.success(data.message, "Success");
                blockUI.release();
                blockUI.destroy();
-               $('#user_role_dt').DataTable().ajax.reload();
+               $('#user_level_dt').DataTable().ajax.reload();
               }
             });
           }

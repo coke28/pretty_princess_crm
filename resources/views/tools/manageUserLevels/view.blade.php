@@ -8,7 +8,7 @@
               <div class="d-flex align-items-center position-relative my-1 mb-2 mb-md-0">
                   <div class="input-group input-group-solid">
                       <span class="svg-icon svg-icon-1 input-group-text"><i class="bi bi-search"></i></span>
-                      <input type="text" id="userRoleSearch" class="form-control form-control-lg form-control-solid" placeholder="Search">
+                      <input type="text" id="userLevelSearch" class="form-control form-control-lg form-control-solid" placeholder="Search">
                       <button class="input-group-text clearInp">
                           <i class="fas fa-times fs-4"></i>
                       </button>
@@ -19,9 +19,9 @@
               <!--begin::Toolbar-->
               <div class="d-flex justify-content-end" data-kt-docs-table-toolbar="base">
                   <!--begin::Add special announcement-->
-                  <button type="button" class="btn btn-primary" title="Add area" data-bs-toggle="modal" data-bs-target="#addUserRole">
+                  <button type="button" class="btn btn-primary" title="Add area" data-bs-toggle="modal" data-bs-target="#addUserLevel">
                       <span class="svg-icon svg-icon-2"><i class="bi bi-plus fs-2"></i></span>
-                      Add User Role
+                      Add User Level
                   </button>
                   <!--end::Add special announcement-->
               </div>
@@ -29,7 +29,7 @@
           </div>
           <!--end::Wrapper-->
           <!--begin::Datatable-->
-          <table id="user_role_dt" data-table-route="{{ route('admin.userRole.table') }}" class="table table-rounded table-striped border gy-7 gs-7">
+          <table id="user_level_dt" data-table-route="{{ route('userLevel.table') }}" class="table table-rounded table-striped border gy-7 gs-7">
               <thead>
                 <tr class="fw-semibold fs-6 text-black-800 border-bottom border-gray-200">
                     <th>ID</th>
@@ -47,17 +47,17 @@
       </div>
     
     <!--start::Include your modals here-->
-    @include('admin/manageUserRoles/modals/addUserRole')
-    @include('admin/manageUserRoles/modals/editUserRole')
+    @include('tools/manageUserLevels/modals/addUserLevel')
+    @include('tools/manageUserLevels/modals/editUserLevel')
    
   
     <!--start::Include your scripts here-->
     @section('scripts')
         {{-- add random version of script at the end of script tag to prevent the need to F5 refresh --}}
-        <script type="text/javascript" src="{{ "/".'custom/admin/manageUserRoles/user_role_dt.js?v=' . rvndev()->getrandomstring(30)}}"></script>
-        <script type="text/javascript" src="{{ "/".'custom/admin/manageUserRoles/addUserRoleValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
-        <script type="text/javascript" src="{{ "/".'custom/admin/manageUserRoles/editUserRoleValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
-        <script type="text/javascript" src="{{ "/".'custom/admin/manageUserRoles/deleteUserRoleValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
+        <script type="text/javascript" src="{{ "/".'custom/tools/manageUserLevels/user_level_dt.js?v=' . rvndev()->getrandomstring(30)}}"></script>
+        <script type="text/javascript" src="{{ "/".'custom/tools/manageUserLevels/addUserLevelValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
+        <script type="text/javascript" src="{{ "/".'custom/tools/manageUserLevels/editUserLevelValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
+        <script type="text/javascript" src="{{ "/".'custom/tools/manageUserLevels/deleteUserLevelValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
     @endsection  
     
       <!--start::Include your styles here-->

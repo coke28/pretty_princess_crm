@@ -88,23 +88,7 @@ var KTDatatablesServerSide = (function () {
 
                             
 
-                              <!--begin::Menu item-->
-                              <div class="menu-item px-3">
-                                  <a href="#" id="delete_user" data-id="` +
-                            data.id +
-                            `" data-first_name="` +
-                            data.first_name +
-                            `" data-last_name="` +
-                            data.last_name +
-                            `" data-role="` +
-                            data.name +
-                            `" class="menu-link px-3" data-kt-docs-table-filter="delete_row">
-                                      Delete
-                                  </a>
-                              </div>
-                              <!--end::Menu item-->
-                          </div>
-                          <!--end::Menu-->
+                             
                       `
                         );
                     },
@@ -136,6 +120,24 @@ var KTDatatablesServerSide = (function () {
         },
     };
 })();
+
+// <!--begin::Menu item-->
+// <div class="menu-item px-3">
+//     <a href="#" id="delete_user" data-id="` +
+// data.id +
+// `" data-first_name="` +
+// data.first_name +
+// `" data-last_name="` +
+// data.last_name +
+// `" data-role="` +
+// data.name +
+// `" class="menu-link px-3" data-kt-docs-table-filter="delete_row">
+//         Delete
+//     </a>
+// </div>
+// <!--end::Menu item-->
+// </div>
+// <!--end::Menu-->
 
 // On document ready
 KTUtil.onDOMContentLoaded(function () {

@@ -1,15 +1,17 @@
 <?php
 
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Account\SettingsController;
-use App\Http\Controllers\Admin\UserRoleController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\Auth\SocialiteLoginController;
 use App\Http\Controllers\Documentation\ReferencesController;
 use App\Http\Controllers\Logs\AuditLogsController;
 use App\Http\Controllers\Logs\SystemLogsController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\UserLevelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,27 +30,33 @@ Route::post('/login', 'Auth\AuthenticatedSessionController@store')->name('post.l
 
 Route::middleware('auth')->group(function () {
 
-
-  Route::group(['middleware' => 'role.checker:admin', 'prefix' => 'admin'], function () {
-    // Define your routes here
-    Route::group(['prefix' => 'user'], function () {
-      //User Routes
-      Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
-      Route::post('table', [UserController::class, 'userTB'])->name('admin.user.table');
-      Route::post('add', [UserController::class, 'userAdd'])->name('admin.user.add');
-      Route::get('get/{user}', [UserController::class, 'userGet'])->name('admin.user.get');
-      Route::post('edit/{user}', [UserController::class, 'userEdit'])->name('admin.user.edit');
-      // Route::post('delete/{user}', [UserController::class, 'userDelete'])->name('admin.user.delete');
-    });
-    Route::group(['prefix' => 'userRole'], function () {
-      //User Role Routes
-      Route::get('/', [UserRoleController::class, 'index'])->name('admin.userRole.index');
-      Route::post('table', [UserRoleController::class, 'userRoleTB'])->name('admin.userRole.table');
-      Route::post('add', [UserRoleController::class, 'userRoleAdd'])->name('admin.userRole.add');
-      Route::get('get/{userRole}', [UserRoleController::class, 'userRoleGet'])->name('admin.userRole.get');
-      Route::post('edit/{userRole}', [UserRoleController::class, 'userRoleEdit'])->name('admin.userRole.edit');
-      Route::post('delete/{userRole}', [UserRoleController::class, 'userRoleDelete'])->name('admin.userRole.delete');
-    });
+  // Define your routes here
+  Route::group(['prefix' => 'user'], function () {
+    //User Routes
+    Route::get('/', [PageController::class, 'manageUser'])->name('user.index');
+    Route::post('table', [UserController::class, 'userTB'])->name('user.table');
+    Route::post('add', [UserController::class, 'userAdd'])->name('user.add');
+    Route::get('get/{user}', [UserController::class, 'userGet'])->name('user.get');
+    Route::post('edit/{user}', [UserController::class, 'userEdit'])->name('user.edit');
+    // Route::post('delete/{user}', [UserController::class, 'userDelete'])->name('admin.user.delete');
+  });
+  Route::group(['prefix' => 'userLevel'], function () {
+    //User Level Routes
+    Route::get('/', [PageController::class, 'manageUserLevel'])->name('userLevel.index');
+    Route::post('table', [UserLevelController::class, 'userLevelTB'])->name('userLevel.table');
+    Route::post('add', [UserLevelController::class, 'userLevelAdd'])->name('userLevel.add');
+    Route::get('get/{userLevel}', [UserLevelController::class, 'userLevelGet'])->name('userLevel.get');
+    Route::post('edit/{userLevel}', [UserLevelController::class, 'userLevelEdit'])->name('userLevel.edit');
+    Route::post('delete/{userLevel}', [UserLevelController::class, 'userLevelDelete'])->name('userLevel.delete');
+  });
+  Route::group(['prefix' => 'form'], function () {
+    //Form Routes
+    Route::get('/', [PageController::class, 'manageForm'])->name('form.index');
+    Route::post('table', [FormController::class, 'formTB'])->name('form.table');
+    Route::post('add', [FormController::class, 'formAdd'])->name('form.add');
+    Route::get('get/{form}', [FormController::class, 'formGet'])->name('form.get');
+    Route::post('edit/{form}', [FormController::class, 'formEdit'])->name('form.edit');
+    Route::post('delete/{form}', [FormController::class, 'formDelete'])->name('form.delete');
   });
 
 

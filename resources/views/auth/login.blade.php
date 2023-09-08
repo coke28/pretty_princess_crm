@@ -1,7 +1,7 @@
 <x-auth-layout>
 
     <!--begin::Signin Form-->
-    <form method="POST" action="{{ theme()->getPageUrl('login') }}" class="form w-100" novalidate="novalidate" id="brg_login_form">
+    <form method="POST" action="{{ theme()->getPageUrl('login') }}" class="form w-100" id="brg_login_form">
     @csrf
 
     <!--begin::Heading-->
@@ -75,7 +75,7 @@
         <!--begin::Actions-->
         <div class="text-center">
             <!--begin::Submit button-->
-            <button type="submit" id="brgLoginSubmitBtn" class="btn btn-lg btn-primary w-100 mb-5">
+            <button type="submit" id="brgLoginSubmitBtn" class="btn btn-lg btn-primary w-100 mb-5" disabled="true">
                 @include('partials.general._button-indicator', ['label' => __('Continue')])
             </button>
             <!--end::Submit button-->

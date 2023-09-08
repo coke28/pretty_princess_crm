@@ -1,18 +1,93 @@
 // Class definition
-var editUserRoleValidation = (function () {
+var editUserValidation = (function () {
     // Private functions
     var initDatatable = function () {
         const fv = FormValidation.formValidation(
-            document.getElementById("edit_user_role_form"),
+            document.getElementById("edit_user_form"),
             {
                 fields: {
-                    name: {
+                    // username: {
+                    //     validators: {
+                    //         notEmpty: {
+                    //             message: "This field is required.",
+                    //         },
+                    //         stringLength: {
+                    //             min: 4,
+                    //             max: 10,
+                    //             message:
+                    //                 "Must be maximum 10 & minimum 4 characters.",
+                    //         },
+                    //         regexp: {
+                    //             regexp: "^[a-zA-Z0-9]*$",
+                    //             message: "Must not have special characters.",
+                    //         },
+                    //     },
+                    // },
+
+                    first_name: {
+                        validators: {
+                            notEmpty: {
+                                message: "This field is required.",
+                            },
+                            regexp: {
+                                regexp: "^[a-zA-Z0-9]*$",
+                                message: "Must not have special characters.",
+                            },
+                        },
+                    },
+                    last_name: {
+                        validators: {
+                            notEmpty: {
+                                message: "This field is required.",
+                            },
+                            regexp: {
+                                regexp: "^[a-zA-Z0-9]*$",
+                                message: "Must not have special characters.",
+                            },
+                        },
+                    },
+                    user_level_id: {
                         validators: {
                             notEmpty: {
                                 message: "This field is required.",
                             },
                         },
                     },
+                    password: {
+                        validators: {
+                            // notEmpty: {
+                            //     message: "This field is required.",
+                            // },
+                            stringLength: {
+                                min: 4,
+                                message: "Must be at least 4 characters.",
+                            },
+                        },
+                    },
+                    email: {
+                        validators: {
+                            notEmpty: {
+                                message: "This field is required.",
+                            },
+                            emailAddress: {
+                                message: "A valid email address is required.",
+                            },
+                        },
+                    },
+                    status: {
+                        validators: {
+                            notEmpty: {
+                                message: "This field is required.",
+                            },
+                        },
+                    },
+                    // file: {
+                    //     validators: {
+                    //         notEmpty: {
+                    //             message: "This field is required.",
+                    //         },
+                    //     },
+                    // },
                 },
 
                 plugins: {
@@ -43,18 +118,18 @@ var editUserRoleValidation = (function () {
             // Show loading indication
 
             document
-                .getElementById("editUserRoleSubmitBtn")
+                .getElementById("editUserSubmitBtn")
                 .setAttribute("data-kt-indicator", "on");
 
             // Disable button to avoid multiple click
-            document.getElementById("editUserRoleSubmitBtn").disabled = true;
+            document.getElementById("editUserSubmitBtn").disabled = true;
 
             // Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
-            var formx = $("#edit_user_role_form")[0]; // You need to use standart javascript object here
+            var formx = $("#edit_user_form")[0]; // You need to use standart javascript object here
             var formDatax = new FormData(formx);
             var selectedID = formDatax.get('id');
             $.ajax({
-                url: "/admin/userRole/edit/"+selectedID,
+                url: "/user/edit/"+selectedID,
                 type: "POST",
                 data: formDatax,
                 contentType: false,
@@ -87,9 +162,13 @@ var editUserRoleValidation = (function () {
                         };
 
                         toastr.success(data.message, "Success");
-                        $("#edit_user_role_form").trigger("reset");
-                        $("#editUserRole").modal("toggle");
-                        $("#user_role_dt").DataTable().ajax.reload();
+                        $("#edit_user_form").trigger("reset");
+                        // $('#edit_user_form [name="supervisor_id"]').val('').trigger('change');
+                        // $('#edit_user_form [name="crm_user_group_id"]').val('').trigger('change');
+                        // $('#edit_user_form [name="user_level_id"]').val('').trigger('change');
+                        $("#editUser").modal("toggle");
+                        $("#edit_user_form .userImagePreview").html("");
+                        $("#user_dt").DataTable().ajax.reload();
                     } else {
                         Swal.fire({
                             text: data.message,
@@ -103,10 +182,10 @@ var editUserRoleValidation = (function () {
                         // window.location.reload();
                     }
                     document
-                        .getElementById("editUserRoleSubmitBtn")
+                        .getElementById("editUserSubmitBtn")
                         .setAttribute("data-kt-indicator", "off");
                     document.getElementById(
-                        "editUserRoleSubmitBtn"
+                        "editUserSubmitBtn"
                     ).disabled = false;
                     //  event.preventDefault();
                 },
@@ -119,10 +198,10 @@ var editUserRoleValidation = (function () {
                         $("#" + field + "_error_edit").html(errors[field][0]);
                     }
                     document
-                        .getElementById("editUserRoleSubmitBtn")
+                        .getElementById("editUserSubmitBtn")
                         .setAttribute("data-kt-indicator", "off");
                     document.getElementById(
-                        "editUserRoleSubmitBtn"
+                        "editUserSubmitBtn"
                     ).disabled = false;
                     // Show the error box
                     $(".error-box").show();
@@ -142,31 +221,18 @@ var editUserRoleValidation = (function () {
 
 jQuery(document).ready(function () {
     //DONT FOGET THIS!!!
-    editUserRoleValidation.init();
+    editUserValidation.init();
 
-    jQuery(document).off('change', '#edit_user_role_form [type="checkbox"]');
-    jQuery(document).on('change', '#edit_user_role_form [type="checkbox"]', function(e) {
-      console.log($(this).is(':checkbox'));
-      var thisname = $(this).attr('name');
-      if($(this).is(":checked")){
-        $('#edit_user_role_form .'+thisname).slideDown(250).prop('checked', true);
-      }
-      else {
-        $('#edit_user_role_form .'+thisname).slideUp(250).prop('checked', false);
-      }
-
-    });
-    // event.preventDefault();
-    jQuery(document).off('click', '#edit_user_role_btn');
-    jQuery(document).on('click', '#edit_user_role_btn', function(e) {
+    jQuery(document).off('click', '#edit_user_btn');
+    jQuery(document).on('click', '#edit_user_btn', function(e) {
       var selectedID = $(this).data('id');
-      var target = document.querySelector("#userRoleModalContent");
+      var target = document.querySelector("#userModalContent");
       var blockUI = new KTBlockUI(target, {
           message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
       });
       blockUI.block();
       $.ajax({
-        url: "/admin/userRole/get/"+selectedID,
+        url: "/user/get/"+selectedID,
         type: "GET",
         contentType: false,
         cache: false,
@@ -177,14 +243,13 @@ jQuery(document).ready(function () {
           blockUI.destroy();
           var obj = JSON.parse(data);
           if(obj){
-            $('#edit_user_role_form [name="id"]').val(obj.id);
-            $('#edit_user_role_form [name="name"]').val(obj.name);
-
-            $('#edit_user_role_form [name="n1_crm"]').prop('checked', obj.n1_crm == 1).trigger('change');
-              $('#edit_user_role_form [name="n2_dashboard"]').prop('checked', obj.n2_dashboard == 1).trigger('change');
-            $('#edit_user_role_form [name="n1_tools"]').prop('checked', obj.n1_tools == 1).trigger('change');
-              $('#edit_user_role_form [name="n2_users"]').prop('checked', obj.n2_users == 1);
-              $('#edit_user_role_form [name="n2_user_roles"]').prop('checked', obj.n2_user_roles == 1);
+            $('#edit_user_form [name="id"]').val(obj.id);
+            $('#edit_user_form [name="first_name"]').val(obj.first_name);
+            $('#edit_user_form [name="last_name"]').val(obj.last_name);
+            $('#edit_user_form [name="user_level_id"]').val(obj.user_level_id);
+            $('#edit_user_form [name="email"]').val(obj.email);
+            $('#edit_user_form [name="status"]').val(obj.status);
+            // $('#edit_user_form .userImagePreview').html(`<img class="img-fluid" src="`+"/"+obj.avatar+`">`);
           } 
         }
       });

@@ -44,8 +44,8 @@ class RVNDevFunc
 
       if($navtitle == 'tools'){
         $included_routes = [
-          'admin.user.index',
-          'admin.userRole.index',
+          'user.index',
+          'userLevel.index',
         ];
       }
 
@@ -61,8 +61,8 @@ class RVNDevFunc
 
       if ($navtitle == 'manageUsers') {
         $included_routes = [
-          'admin.user.index',
-          'admin.userRole.index',
+          'user.index',
+          'userLevel.index',
         ];
       }
     

@@ -30,7 +30,7 @@
           <!--end::Wrapper-->
           <!--begin::Datatable-->
           {{-- data-table-route is used to pass the name of the route to the seperate javascript file --}}
-          <table id="user_dt" data-table-route="{{ route('admin.user.table') }}" class="table table-rounded table-striped border gy-7 gs-7">
+          <table id="user_dt" data-table-route="{{ route('user.table') }}" class="table table-rounded table-striped border gy-7 gs-7">
               <thead>
                 <tr class="fw-semibold fs-6 text-black-800 border-bottom border-gray-200">
                     <th>ID</th>
@@ -51,17 +51,17 @@
       </div>
     
     <!--start::Include your modals here-->
-    @include('admin/manageUsers/modals/addUser')
-    @include('admin/manageUsers/modals/editUser')
+    @include('tools/manageUsers/modals/addUser')
+    @include('tools/manageUsers/modals/editUser')
    
   
     <!--start::Include your scripts here-->
     @section('scripts')
         {{-- add random version of script at the end of script tag to prevent the need to F5 refresh --}}
-        <script type="text/javascript" src="{{ "/".'custom/admin/manageUsers/user_dt.js?v=' . rvndev()->getrandomstring(30)}}"></script>
-        <script type="text/javascript" src="{{ "/".'custom/admin/manageUsers/addUserValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
-        <script type="text/javascript" src="{{ "/".'custom/admin/manageUsers/editUserValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
-        {{-- <script type="text/javascript" src="{{ "/".'custom/manageArea/deleteAreaValidation.js?v='. rvndev()->getRandom(30) }}"></script> --}}
+        <script type="text/javascript" src="{{ "/".'custom/tools/manageUsers/user_dt.js?v=' . rvndev()->getrandomstring(30)}}"></script>
+        <script type="text/javascript" src="{{ "/".'custom/tools/manageUsers/addUserValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
+        <script type="text/javascript" src="{{ "/".'custom/tools/manageUsers/editUserValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
+        {{-- <script type="text/javascript" src="{{ "/".'custom/tools/manageUsers/deleteUserValidation.js?v='. rvndev()->getrandomstring(30) }}"></script> --}}
     @endsection  
     
       <!--start::Include your styles here-->
