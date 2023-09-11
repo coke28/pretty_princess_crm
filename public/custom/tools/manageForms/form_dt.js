@@ -49,6 +49,7 @@ var KTDatatablesServerSide = (function () {
             columns: [
                 { data: "id" },
                 { data: "form_name" },
+                { data: "file_template_url" },
                 { data: "data_set" },
                 { data: "status" },
                 { data: "created_at" },
@@ -56,7 +57,7 @@ var KTDatatablesServerSide = (function () {
             ],
             columnDefs: [
                 {
-                    targets: 4,
+                    targets: 6,
                     orderable: false,
                     render: function (data, type, row) {
                         return (

@@ -29,6 +29,17 @@
                         </div>
 
                     </div>
+
+                    <div class="row mb-6">
+                        <label class="col-lg-2 col-form-label fw-bold fs-6">File Template URL<span
+                                class="text-danger">*</span></label>
+                        <div class="col-lg-10 fv-row">
+                            <input type="text" name="file_template_url"
+                                class="form-control form-control-lg form-control-solid"
+                                placeholder="Enter File Template URL">
+                        </div>
+
+                    </div>
                     <div class="row mb-6">
                         <label class="col-lg-2 col-form-label fw-bold fs-6">Data Set<span
                                 class="text-danger">*</span></label>

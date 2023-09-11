@@ -20,6 +20,14 @@ var editFormValidation = (function () {
                             },
                         },
                     },
+                    file_template_url: {
+                        validators: {
+                            notEmpty: {
+                                message: "This field is required.",
+                            },
+                        },
+                    },
+
                     status: {
                         validators: {
                             notEmpty: {
@@ -68,7 +76,7 @@ var editFormValidation = (function () {
             var formDatax = new FormData(formx);
             var selectedID = formDatax.get("id");
             $.ajax({
-                url: "/form/edit/" + selectedID,
+                url: "/form/edit/"+selectedID,
                 type: "POST",
                 data: formDatax,
                 contentType: false,
@@ -168,7 +176,7 @@ jQuery(document).ready(function () {
         });
         blockUI.block();
         $.ajax({
-            url: "/form/get/" + selectedID,
+            url: "/form/get/"+selectedID,
             type: "GET",
             contentType: false,
             cache: false,

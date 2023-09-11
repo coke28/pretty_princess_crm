@@ -19,7 +19,7 @@
               <!--begin::Toolbar-->
               <div class="d-flex justify-content-end" data-kt-docs-table-toolbar="base">
                   <!--begin::Add special announcement-->
-                  <button type="button" class="btn btn-primary" title="Add User" data-bs-toggle="modal" data-bs-target="#addUser">
+                  <button type="button" class="btn btn-primary" title="Add Form" data-bs-toggle="modal" data-bs-target="#addForm">
                       <span class="svg-icon svg-icon-2"><i class="bi bi-plus fs-2"></i></span>
                       Add Form
                   </button>

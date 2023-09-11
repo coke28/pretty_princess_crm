@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class FormService
 {
-    public function userLevelTB(Request $request)
+    public function formTB(Request $request)
     {
         header('Content-Type: application/json');
         header('Access-Control-Allow-Origin: *');
@@ -18,9 +18,11 @@ class FormService
 
         $tableColumns = array(
             'id',
-            'name',
+            'form_name',
+            'file_template_url',
+            'data_set',
+            'status',
             'created_at',
-            'updated_at',
         );
 
         // offset and limit
@@ -47,76 +49,77 @@ class FormService
             $sortOrder = $request->order[0]['dir'];
         }
 
-        $userLevels = DB::table('user_levels')
-            ->selectRaw('*')
-            ->where('deleted', '0');
-        // ->where('username', '!=', "root")
-        // ->where('users.status', '1');
-        $userLevels = $userLevels->where(function ($query) use ($search) {
+        $forms = DB::table('forms')->selectRaw('
+            id,
+            form_name,
+            file_template_url,
+            data_set,
+            CASE status WHEN 0 THEN "DISABLED" WHEN 1 THEN "ACTIVE" END as status,
+            created_at
+        ');
+
+        $forms = $forms->where(function ($query) use ($search) {
             return $query->where('id', 'like', '%' . $search . '%')
-                ->orWhere('name', 'like', '%' . $search . '%')
-                ->orWhere('created_at', 'like', '%' . $search . '%')
-                ->orWhere('updated_at', 'like', '%' . $search . '%');
+                ->orWhere('form_name', 'like', '%' . $search . '%')
+                ->orWhere('file_template_url', 'like', '%' . $search . '%')
+                ->orWhere('data_set', 'like', '%' . $search . '%')
+                ->orWhere('status', 'like', '%' . $search . '%')
+                ->orWhere('created_at', 'like', '%' . $search . '%');
         })
             ->orderBy($tableColumns[$sortIndex], $sortOrder);
-        $userLevelCount = $userLevels->count();
-        $userLevels = $userLevels->offset($offset)
+        $formCount = $forms->count();
+        $forms = $forms->offset($offset)
             ->limit($limit)
             ->get();
 
 
 
         $result = [
-            'recordsTotal'    => $userLevelCount,
-            'recordsFiltered' => $userLevelCount,
-            'data'            => $userLevels,
+            'recordsTotal'    => $formCount,
+            'recordsFiltered' => $formCount,
+            'data'            => $forms,
         ];
 
         return $result;
     }
-    // public function userLevelAdd($validatedData): void
-    // {
+    public function formAdd($validatedData): void
+    {
 
-    //     //Check if email is in use
-    //     $name = trim($validatedData['name']);
-    //     $checkDupliateNameParameters = [
-    //         "name" => $validatedData['name'],
-    //         "user_level_id" => "",
-    //         "type" => "add",
-    //     ];
+        //Check if email is in use
+        // $name = trim($validatedData['name']);
+        // $checkDupliateNameParameters = [
+        //     "name" => $validatedData['name'],
+        //     "user_level_id" => "",
+        //     "type" => "add",
+        // ];
+        // $this->checkDuplicateName($checkDupliateNameParameters);
+        $form = new Form();
+        $form->form_name = $validatedData['form_name'];
+        $form->file_template_url = $validatedData['file_template_url'];
+        $form->data_set = $validatedData['data_set'];
+        $form->status = $validatedData['status'];
+        $form->save();
+    }
+    public function formEdit($validatedData, Form $form): void
+    {
+        // $checkDupliateNameParameters = [
+        //     "name" => $validatedData['name'],
+        //     "user_level_id" => $form->id,
+        //     "type" => "edit",
+        // ];
 
-    //     $this->checkDuplicateName($checkDupliateNameParameters);
-    //     $userLevel = new UserLevel();
-    //     $userLevel->name = $validatedData['name'];
-    //     $userLevel->n1_crm = $validatedData['n1_crm'] ?? 0;
-    //     $userLevel->n1_tools = $validatedData['n1_tools'] ?? 0;
-    //     $userLevel->n2_users = $validatedData['n2_users'] ?? 0;
-    //     $userLevel->n2_user_roles = $validatedData['n2_user_roles'] ?? 0;
-    //     $userLevel->n2_dashboard = $validatedData['n2_dashboard'] ?? 0;
-    //     $userLevel->save();
-    // }
-    // public function userLevelEdit($validatedData, UserLevel $userLevel): void
-    // {
-    //     $checkDupliateNameParameters = [
-    //         "name" => $validatedData['name'],
-    //         "user_level_id" => $userLevel->id,
-    //         "type" => "edit",
-    //     ];
-
-    //     $this->checkDuplicateName($checkDupliateNameParameters);
-    //     $userLevel->name = $validatedData['name'];
-    //     $userLevel->n1_crm = $validatedData['n1_crm'] ?? 0;
-    //     $userLevel->n1_tools = $validatedData['n1_tools'] ?? 0;
-    //     $userLevel->n2_users = $validatedData['n2_users'] ?? 0;
-    //     $userLevel->n2_user_roles = $validatedData['n2_user_roles'] ?? 0;
-    //     $userLevel->n2_dashboard = $validatedData['n2_dashboard'] ?? 0;
-    //     $userLevel->save();
-    // }
-    // public function userLevelDelete(UserLevel $userLevel)
-    // {
-    //     $userLevel->deleted = "1";
-    //     $userLevel->save();
-    // }
+        // $this->checkDuplicateName($checkDupliateNameParameters);
+        $form->form_name = $validatedData['form_name'];
+        $form->file_template_url = $validatedData['file_template_url'];
+        $form->data_set = $validatedData['data_set'];
+        $form->status = $validatedData['status'];
+        $form->save();
+    }
+    public function formDelete(Form $form)
+    {
+        $form->deleted = "1";
+        $form->save();
+    }
     // private function checkDuplicateName($paramaterArray)
     // {
     //     switch ($paramaterArray['type']) {

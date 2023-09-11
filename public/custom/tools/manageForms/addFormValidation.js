@@ -20,6 +20,13 @@ var addFormValidation = (function () {
                             },
                         },
                     },
+                    file_template_url: {
+                        validators: {
+                            notEmpty: {
+                                message: "This field is required.",
+                            },
+                        },
+                    },
                     status: {
                         validators: {
                             notEmpty: {
@@ -67,8 +74,9 @@ var addFormValidation = (function () {
             var formx = $("#add_form_form")[0]; // You need to use standart javascript object here
             var formDatax = new FormData(formx);
             var formAddRoute = $("#addFormSubmitBtn").data(
-                "data-form-add-route"
+                "form-add-route"
             );
+            console.log(formAddRoute);
             $.ajax({
                 url: formAddRoute,
                 type: "POST",
