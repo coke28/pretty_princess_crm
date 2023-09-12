@@ -29,8 +29,8 @@ class UserRequest extends FormRequest
             'first_name' => 'required|regex:/^[a-zA-Z0-9]*$/',
             'last_name' => 'required|regex:/^[a-zA-Z0-9]*$/',
             'user_level_id' => 'required|integer',
-            'password' => 'string|min:4',
-            'email' => ['required',new UniqueExceptCurrent('users', 'email', $this->route('form'))], // Add the 'unique' rule here
+            'password' => 'sometimes',
+            'email' => ['required',new UniqueExceptCurrent('users', 'email', $this->route('user'))], // Add the 'unique' rule here
             'status' => 'required|string',
         ];
     }
