@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserLevelEditRequest;
 use App\Http\Requests\UserLevelRequest;
 use App\Models\UserLevel;
 use App\Services\UserLevelService;
@@ -50,7 +49,7 @@ class UserLevelController extends Controller
         return json_encode($userLevel);
     }
 
-    public function userLevelEdit(UserLevelEditRequest $request, UserLevel $userLevel)
+    public function userLevelEdit(UserLevelRequest $request, UserLevel $userLevel)
     {
         //Get validated Data 
         try {

@@ -86,6 +86,7 @@
                             <input type="text" name="password" class="form-control form-control-lg form-control-solid"
                                 placeholder="Enter Password"></input>
                         </div>
+                         *Leave blank to save as default password (password).
 
                     </div>
                     <div class="row mb-6">

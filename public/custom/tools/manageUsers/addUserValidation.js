@@ -55,9 +55,6 @@ var addUserValidation = (function () {
                     },
                     password: {
                         validators: {
-                            notEmpty: {
-                                message: "This field is required.",
-                            },
                             stringLength: {
                                 min: 4,
                                 message: "Must be at least 4 characters.",

@@ -88,13 +88,9 @@ class UserService
     }
     public function userAdd($validatedData): void
     {
-        $checkDupliateEmailParameters = [
-            "email" => $validatedData['email'],
-            "user_id" => "",
-            "type" => "add",
-        ];
-        $this->checkDuplicateEmail($checkDupliateEmailParameters);
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['password'] = !empty(Hash::make($validatedData['password']))
+            ? Hash::make($validatedData['password'])
+            : Hash::make('password');
         $user = new User();
         $user->first_name = $validatedData['first_name'];
         $user->last_name = $validatedData['last_name'];
@@ -106,12 +102,6 @@ class UserService
     }
     public function userEdit($validatedData, User $user): void
     {
-        $checkDupliateEmailParameters = [
-            "email" => $validatedData['email'],
-            "user_id" => $user->id,
-            "type" => "edit",
-        ];
-        $this->checkDuplicateEmail($checkDupliateEmailParameters);
         //process validated data
         $validatedData['password'] = Hash::make($validatedData['password']);
         $validatedData['email'] = trim($validatedData['email']);
@@ -125,21 +115,5 @@ class UserService
         $user->email = $validatedData['email'];
         $user->status = $validatedData['status'];
         $user->save();
-    }
-    private function checkDuplicateEmail($paramaterArray)
-    {
-        switch ($paramaterArray['type']) {
-            case 'add':
-                # code...
-                $existingUser = User::where('email', $paramaterArray['email'])->count();
-                break;
-            case 'edit':
-                # code...
-                $existingUser = User::where('email', $paramaterArray['email'])->where('id', '!=', $paramaterArray['user_id'])->count();
-                break;
-        }
-        if ($existingUser > 0) {
-            throw new \Exception("Email is already in use.");
-        }
     }
 }

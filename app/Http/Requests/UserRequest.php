@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UniqueExceptCurrent;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
@@ -28,8 +29,8 @@ class UserRequest extends FormRequest
             'first_name' => 'required|regex:/^[a-zA-Z0-9]*$/',
             'last_name' => 'required|regex:/^[a-zA-Z0-9]*$/',
             'user_level_id' => 'required|integer',
-            'password' => 'required|string|min:4',
-            'email' => 'required|email', // Add the 'unique' rule here
+            'password' => 'string|min:4',
+            'email' => ['required',new UniqueExceptCurrent('users', 'email', $this->route('form'))], // Add the 'unique' rule here
             'status' => 'required|string',
         ];
     }

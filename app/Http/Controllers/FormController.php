@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BarangayFormEditRequest;
 use App\Http\Requests\BarangayFormRequest;
 use App\Models\Form;
 use App\Services\FormService;
@@ -50,7 +49,7 @@ class FormController extends Controller
         return json_encode($form);
     }
 
-    public function formEdit(BarangayFormEditRequest $request, Form $form)
+    public function formEdit(BarangayFormRequest $request, Form $form)
     {
 
         try {

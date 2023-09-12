@@ -84,15 +84,6 @@ class FormService
     }
     public function formAdd($validatedData): void
     {
-
-        //Check if email is in use
-        // $name = trim($validatedData['name']);
-        // $checkDupliateNameParameters = [
-        //     "name" => $validatedData['name'],
-        //     "user_level_id" => "",
-        //     "type" => "add",
-        // ];
-        // $this->checkDuplicateName($checkDupliateNameParameters);
         $form = new Form();
         $form->form_name = $validatedData['form_name'];
         $form->file_template_url = $validatedData['file_template_url'];
@@ -102,13 +93,6 @@ class FormService
     }
     public function formEdit($validatedData, Form $form): void
     {
-        // $checkDupliateNameParameters = [
-        //     "name" => $validatedData['name'],
-        //     "user_level_id" => $form->id,
-        //     "type" => "edit",
-        // ];
-
-        // $this->checkDuplicateName($checkDupliateNameParameters);
         $form->form_name = $validatedData['form_name'];
         $form->file_template_url = $validatedData['file_template_url'];
         $form->data_set = $validatedData['data_set'];
@@ -120,20 +104,4 @@ class FormService
         $form->deleted = "1";
         $form->save();
     }
-    // private function checkDuplicateName($paramaterArray)
-    // {
-    //     switch ($paramaterArray['type']) {
-    //         case 'add':
-    //             # code...
-    //             $existingUserLevel = UserLevel::where('name', $paramaterArray['name'])->where('deleted', '0')->count();
-    //             break;
-    //         case 'edit':
-    //             # code...
-    //             $existingUserLevel = UserLevel::where('name', $paramaterArray['name'])->where('id', '!=', $paramaterArray['user_level_id'])->where('deleted', '0')->count();
-    //             break;
-    //     }
-    //     if ($existingUserLevel > 0) {
-    //         throw new \Exception('User Level already in use.');
-    //     }
-    // }
 }

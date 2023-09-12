@@ -2,17 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserEditRequest;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
-use App\Models\UserLevel;
 use App\Services\UserService;
-use DB;
-use Hash;
 use Illuminate\Http\Request;
-use Str;
 
 class UserController extends Controller
 {
@@ -55,7 +49,7 @@ class UserController extends Controller
         return json_encode($user);
     }
 
-    public function userEdit(UserEditRequest $request, User $user)
+    public function userEdit(UserRequest $request, User $user)
     {
        
         try {

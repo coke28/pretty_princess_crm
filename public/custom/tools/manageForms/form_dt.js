@@ -83,18 +83,6 @@ var KTDatatablesServerSide = (function () {
                         Edit
                     </a>
                 </div>
-                <!--end::Menu item-->
-                <!--begin::Menu item-->
-                <div class="menu-item px-3">
-                    <a href="#" id="delete_form" data-id="` +
-                            data.id +
-                            `" data-name="` +
-                            data.name +
-                            `" class="menu-link px-3" data-kt-docs-table-filter="delete_row">
-                        Delete
-                    </a>
-                </div>
-                <!--end::Menu item-->
             </div>
             <!--end::Menu-->
         `

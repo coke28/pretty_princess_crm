@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\UniqueExceptCurrent;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserLevelRequest extends FormRequest
@@ -23,8 +24,9 @@ class UserLevelRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            'name' => 'required|string',
+            'name' => ['required','string', new UniqueExceptCurrent('user_levels', 'name', $this->route('userLevel'))],
             'n1_crm' => 'in:0,1',
             'n1_tools' => 'in:0,1',
             'n2_users' => 'in:0,1',
