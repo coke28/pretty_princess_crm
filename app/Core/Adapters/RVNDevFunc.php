@@ -47,6 +47,7 @@ class RVNDevFunc
           'user.index',
           'userLevel.index',
           'form.index',
+          'crmLog.index',
         ];
       }
 
@@ -60,13 +61,13 @@ class RVNDevFunc
 
     if($navtype == 'pagegroup'){
 
-      if ($navtitle == 'manageUsers') {
-        $included_routes = [
-          'user.index',
-          'userLevel.index',
-          'form.index',
-        ];
-      }
+      // if ($navtitle == 'manageUsers') {
+      //   $included_routes = [
+      //     'user.index',
+      //     'userLevel.index',
+      //     'form.index',
+      //   ];
+      // }
     
 
 

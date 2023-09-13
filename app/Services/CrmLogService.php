@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class CrmLogService
 {
-    public function crm_logTB(Request $request)
+    public function crmLogTB(Request $request)
     {
         header('Content-Type: application/json');
         header('Access-Control-Allow-Origin: *');
@@ -54,8 +54,9 @@ class CrmLogService
             action,
             user_name,
             affected_row_copy,
-            created_at,
-        ');
+            created_at
+        ')
+        ->where('deleted','0');
 
         $crm_logs = $crm_logs->where(function ($query) use ($search) {
             return $query->where('id', 'like', '%' . $search . '%')

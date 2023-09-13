@@ -11,6 +11,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CrmLogController;
 use App\Http\Controllers\UserLevelController;
 
 /*
@@ -56,11 +57,15 @@ Route::middleware('auth')->group(function () {
     Route::post('add', [FormController::class, 'formAdd'])->name('form.add');
     Route::get('get/{form}', [FormController::class, 'formGet'])->name('form.get');
     Route::post('edit/{form}', [FormController::class, 'formEdit'])->name('form.edit');
-    Route::post('delete/{form}', [FormController::class, 'formDelete'])->name('form.delete');
+    // Route::post('delete/{form}', [FormController::class, 'formDelete'])->name('form.delete');
   });
 
-
-
+  Route::group(['prefix' => 'crmLog'], function () {
+    //Form Routes
+    Route::get('/', [PageController::class, 'manageCrmLog'])->name('crmLog.index');
+    Route::post('table', [CrmLogController::class, 'crmLogTB'])->name('crmLog.table');
+    Route::post('delete/{crmLog}', [CrmLogController::class, 'crmLogDelete'])->name('crmLog.delete');
+  });
   Route::post('/logout', 'Auth\AuthenticatedSessionController@destroy')->name('logout');
   Route::get('/dashboard', 'PageController@dashboardPage')->name('user.dash');
 });
