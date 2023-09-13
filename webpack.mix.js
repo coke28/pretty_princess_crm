@@ -5,7 +5,7 @@ const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin');
 const rimraf = require('rimraf');
 const WebpackRTLPlugin = require('webpack-rtl-plugin');
 const del = require('del');
-const fs = require('fs');
+// const fs = require('fs');
 
 /*
  |--------------------------------------------------------------------------
@@ -31,7 +31,7 @@ mix.autoload({
 });
 
 // Remove existing generated assets from public folder
-del.sync(['public/css/*', 'public/js/*', 'public/media/*', 'public/plugins/*',]);
+// del.sync(['public/css/*', 'public/js/*', 'public/media/*', 'public/plugins/*',]);
 
 // Build 3rd party plugins css/js
 mix.sass(`resources/assets/core/plugins/plugins.scss`, `public/${demo}/plugins/global/plugins.bundle.css`).then(() => {

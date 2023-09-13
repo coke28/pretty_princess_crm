@@ -46,6 +46,7 @@ class RVNDevFunc
         $included_routes = [
           'user.index',
           'userLevel.index',
+          'form.index',
         ];
       }
 
@@ -63,6 +64,7 @@ class RVNDevFunc
         $included_routes = [
           'user.index',
           'userLevel.index',
+          'form.index',
         ];
       }
     
