@@ -108,6 +108,7 @@ var addUserLevelValidation = (function () {
                         });
                         // window.location.reload();
                     }
+                    $(".error-box").hide();
                     document
                         .getElementById("addUserLevelSubmitBtn")
                         .setAttribute("data-kt-indicator", "off");
