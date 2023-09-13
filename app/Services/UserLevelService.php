@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class UserLevelService
 {
     private CrmLogService $crmLogService;
-
+ 
     public function __construct(CrmLogService $crmLogService)
     {
         $this->crmLogService = $crmLogService;
@@ -90,6 +90,8 @@ class UserLevelService
         $userLevel->n2_users = $validatedData['n2_users'] ?? 0;
         $userLevel->n2_user_roles = $validatedData['n2_user_roles'] ?? 0;
         $userLevel->n2_dashboard = $validatedData['n2_dashboard'] ?? 0;
+        $userLevel->n2_forms = $validatedData['n2_forms'] ?? 0;
+        $userLevel->n2_crm_logs = $validatedData['n2_crm_logs'] ?? 0;
         $userLevel->save();
 
         $this->crmLogService->addCrmLog($userLevel, "Manage User Levels", "userLevelAdd");
@@ -102,6 +104,8 @@ class UserLevelService
         $userLevel->n2_users = $validatedData['n2_users'] ?? 0;
         $userLevel->n2_user_roles = $validatedData['n2_user_roles'] ?? 0;
         $userLevel->n2_dashboard = $validatedData['n2_dashboard'] ?? 0;
+        $userLevel->n2_forms = $validatedData['n2_forms'] ?? 0;
+        $userLevel->n2_crm_logs = $validatedData['n2_crm_logs'] ?? 0;
         $userLevel->save();
 
         $this->crmLogService->addCrmLog($userLevel, "Manage User Levels", "userLevelEdit");

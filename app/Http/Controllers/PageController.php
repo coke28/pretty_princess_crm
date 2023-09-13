@@ -80,16 +80,15 @@ class PageController extends Controller
 
   public function manageForm()
   {
-    //  $hasAccess = (auth()->user()->userlevel->n2_users == 0) ? false : true;
     $hasAccess = $this->permissionCheck(auth()->user()->userlevel->n2_forms);
-    // if (!$hasAccess) {
-    //   if (Auth::check()) {
-    //     // The user is logged in...
-    //     return redirect()->route('user.dash');
-    //   } else {
-    //     return redirect()->route('get.login');
-    //   }
-    // }
+    if (!$hasAccess) {
+      if (Auth::check()) {
+        // The user is logged in...
+        return redirect()->route('user.dash');
+      } else {
+        return redirect()->route('get.login');
+      }
+    }
     return view('tools.manageForms.view', array(
       'pageTitle' => 'Manage Forms',
       'pageDescription' => '',
@@ -98,16 +97,15 @@ class PageController extends Controller
 
   public function manageCrmLog()
   {
-    //  $hasAccess = (auth()->user()->userlevel->n2_users == 0) ? false : true;
     $hasAccess = $this->permissionCheck(auth()->user()->userlevel->n2_forms);
-    // if (!$hasAccess) {
-    //   if (Auth::check()) {
-    //     // The user is logged in...
-    //     return redirect()->route('user.dash');
-    //   } else {
-    //     return redirect()->route('get.login');
-    //   }
-    // }
+    if (!$hasAccess) {
+      if (Auth::check()) {
+        // The user is logged in...
+        return redirect()->route('user.dash');
+      } else {
+        return redirect()->route('get.login');
+      }
+    }
     return view('tools.manageCrmLogs.view', array(
       'pageTitle' => 'Manage CRM Logs',
       'pageDescription' => '',

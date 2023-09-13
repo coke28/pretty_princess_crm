@@ -109,6 +109,7 @@ var editUserLevelValidation = (function () {
                     document.getElementById(
                         "editUserLevelSubmitBtn"
                     ).disabled = false;
+                    location.reload();
                     //  event.preventDefault();
                 },
                 error: function (response) {
