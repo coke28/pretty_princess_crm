@@ -66,8 +66,8 @@ class UserService
             ,user_levels.name
             ,users.email
             ,CASE users.status WHEN 0 THEN "INACTIVE" WHEN 1 THEN "ACTIVE" END as status
-            ,users.created_at')
-            ->where('user_levels.deleted', '0');
+            ,users.created_at');
+            // ->where('user_levels.deleted', '0');
         // ->where('username', '!=', "root")
         // ->where('users.status', '1');
         $users = $users->where(function ($query) use ($search) {

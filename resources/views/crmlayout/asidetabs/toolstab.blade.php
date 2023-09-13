@@ -34,7 +34,8 @@
             </a>
         </div>
         @endif
-        {{-- @if(auth()->user()->userlevel->n2_forms == 1) --}}
+
+        @if(auth()->user()->userlevel->n2_forms == 1)
         <div class="menu-item">
             <a class="menu-link {{ rvndev()->getActiveNavClass('page', 'form.index')['main'] }}"
                 href="{{ route('form.index', [], false) }}">
@@ -44,9 +45,9 @@
                 <span class="menu-title">Manage Forms</span>
             </a>
         </div>
-        {{-- @endif --}}
+        @endif
 
-        {{-- @if(auth()->user()->userlevel->n2_forms == 1) --}}
+        @if(auth()->user()->userlevel->n2_crm_logs == 1)
         <div class="menu-item">
             <a class="menu-link {{ rvndev()->getActiveNavClass('page', 'crmLog.index')['main'] }}"
                 href="{{ route('crmLog.index', [], false) }}">
@@ -56,7 +57,7 @@
                 <span class="menu-title">Manage CRM Logs</span>
             </a>
         </div>
-        {{-- @endif --}}
+        @endif
     </div>
 </div>
 <!--end::Menu-->

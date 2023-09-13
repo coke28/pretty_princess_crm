@@ -32,6 +32,8 @@ class UserLevelRequest extends FormRequest
             'n2_users' => 'in:0,1',
             'n2_user_roles' => 'in:0,1',
             'n2_dashboard' => 'in:0,1',
+            'n2_forms' => 'in:0,1',
+            'n2_crm_logs' => 'in:0,1',
         ];
     }
 }

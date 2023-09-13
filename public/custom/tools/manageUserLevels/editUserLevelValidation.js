@@ -102,12 +102,14 @@ var editUserLevelValidation = (function () {
                         });
                         // window.location.reload();
                     }
+                    $(".error-box").hide();
                     document
                         .getElementById("editUserLevelSubmitBtn")
                         .setAttribute("data-kt-indicator", "off");
                     document.getElementById(
                         "editUserLevelSubmitBtn"
                     ).disabled = false;
+                    location.reload();
                     //  event.preventDefault();
                 },
                 error: function (response) {
@@ -185,6 +187,8 @@ jQuery(document).ready(function () {
             $('#edit_user_level_form [name="n1_tools"]').prop('checked', obj.n1_tools == 1).trigger('change');
               $('#edit_user_level_form [name="n2_users"]').prop('checked', obj.n2_users == 1);
               $('#edit_user_level_form [name="n2_user_roles"]').prop('checked', obj.n2_user_roles == 1);
+              $('#edit_user_level_form [name="n2_forms"]').prop('checked', obj.n2_forms == 1);
+              $('#edit_user_level_form [name="n2_crm_logs"]').prop('checked', obj.n2_crm_logs == 1);
           } 
         }
       });

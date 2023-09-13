@@ -178,6 +178,7 @@ var addUserValidation = (function () {
                         });
                         // window.location.reload();
                     }
+                    $(".error-box").hide();
                     document
                         .getElementById("addUserSubmitBtn")
                         .setAttribute("data-kt-indicator", "off");

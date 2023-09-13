@@ -126,6 +126,7 @@ var addFormValidation = (function () {
                         });
                         // window.location.reload();
                     }
+                    $(".error-box").hide();
                     document
                         .getElementById("addFormSubmitBtn")
                         .setAttribute("data-kt-indicator", "off");
