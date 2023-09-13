@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class UserLevelService
 {
+    private CrmLogService $crmLogService;
+
+    public function __construct(CrmLogService $crmLogService)
+    {
+        $this->crmLogService = $crmLogService;
+    }
+
     public function userLevelTB(Request $request)
     {
         header('Content-Type: application/json');
@@ -84,6 +91,8 @@ class UserLevelService
         $userLevel->n2_user_roles = $validatedData['n2_user_roles'] ?? 0;
         $userLevel->n2_dashboard = $validatedData['n2_dashboard'] ?? 0;
         $userLevel->save();
+
+        $this->crmLogService->addCrmLog($userLevel, "Manage User Levels", "userLevelAdd");
     }
     public function userLevelEdit($validatedData, UserLevel $userLevel): void
     {
@@ -94,10 +103,14 @@ class UserLevelService
         $userLevel->n2_user_roles = $validatedData['n2_user_roles'] ?? 0;
         $userLevel->n2_dashboard = $validatedData['n2_dashboard'] ?? 0;
         $userLevel->save();
+
+        $this->crmLogService->addCrmLog($userLevel, "Manage User Levels", "userLevelEdit");
     }
     public function userLevelDelete(UserLevel $userLevel)
     {
         $userLevel->deleted = "1";
         $userLevel->save();
+
+        $this->crmLogService->addCrmLog($userLevel, "Manage User Levels", "userLevelDelete");
     }
 }

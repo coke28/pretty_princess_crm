@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class FormService
 {
+    private CrmLogService $crmLogService;
+ 
+    public function __construct(CrmLogService $crmLogService)
+    {
+        $this->crmLogService = $crmLogService;
+    }
+
     public function formTB(Request $request)
     {
         header('Content-Type: application/json');
@@ -90,6 +97,8 @@ class FormService
         $form->data_set = $validatedData['data_set'];
         $form->status = $validatedData['status'];
         $form->save();
+
+        $this->crmLogService->addCrmLog($form,"Manage Forms","formAdd");
     }
     public function formEdit($validatedData, Form $form): void
     {
@@ -98,10 +107,16 @@ class FormService
         $form->data_set = $validatedData['data_set'];
         $form->status = $validatedData['status'];
         $form->save();
+
+        $this->crmLogService->addCrmLog($form,"Manage Forms","formEdit");
+
     }
     public function formDelete(Form $form)
     {
         $form->deleted = "1";
         $form->save();
+
+        $this->crmLogService->addCrmLog($form,"Manage Forms","formDelete");
+
     }
 }

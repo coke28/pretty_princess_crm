@@ -1,13 +1,13 @@
 $(document).ready(function (){
 
-    jQuery(document).off('click', '#delete_user_level');
-    jQuery(document).on('click', '#delete_user_level', function(e) {
+    jQuery(document).off('click', '#delete_crm_log');
+    jQuery(document).on('click', '#delete_crm_log', function(e) {
       e.preventDefault();
       var id = $(this).data('id');
         //makes sent data name in dt to lowercase
       //console.log($(this).data());
       Swal.fire({
-          html: `Are you sure you want to delete ID: `+$(this).data('id')+` `+$(this).data('name')+`?`,
+          html: `Are you sure you want to delete ID: `+$(this).data('id')+`?`,
           icon: "info",
           buttonsStyling: false,
           showCancelButton: true,
@@ -20,13 +20,13 @@ $(document).ready(function (){
       }).then(function (result) {
 
           if(result.isConfirmed){
-            var target = document.querySelector("#user_level_dt");
+            var target = document.querySelector("#crm_log_dt");
             var blockUI = new KTBlockUI(target, {
                 message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
             });
             blockUI.block();
             $.ajax({
-              url: "/userLevel/delete/"+id,
+              url: "/crmLog/delete/"+id,
               type: "POST",
               contentType: false,
               cache: false,
@@ -54,7 +54,7 @@ $(document).ready(function (){
                toastr.success(data.message, "Success");
                blockUI.release();
                blockUI.destroy();
-               $('#user_level_dt').DataTable().ajax.reload();
+               $('#crm_log_dt').DataTable().ajax.reload();
               }
             });
           }

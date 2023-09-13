@@ -46,11 +46,17 @@
         </div>
         {{-- @endif --}}
 
-
-
-
-
-
+        {{-- @if(auth()->user()->userlevel->n2_forms == 1) --}}
+        <div class="menu-item">
+            <a class="menu-link {{ rvndev()->getActiveNavClass('page', 'crmLog.index')['main'] }}"
+                href="{{ route('crmLog.index', [], false) }}">
+                <span class="menu-icon">
+                    {!! theme()->getSvgIcon('icons/duotone/Design/PenAndRuller.svg', "svg-icon-2") !!}
+                </span>
+                <span class="menu-title">Manage CRM Logs</span>
+            </a>
+        </div>
+        {{-- @endif --}}
     </div>
 </div>
 <!--end::Menu-->
