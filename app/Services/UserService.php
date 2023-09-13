@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class UserService
 {
+    private CrmLogService $crmLogService;
+ 
+    public function __construct(CrmLogService $crmLogService)
+    {
+        $this->crmLogService = $crmLogService;
+    }
+
     public function userTB(Request $request)
     {
 
@@ -99,6 +106,10 @@ class UserService
         $user->email = $validatedData['email'];
         $user->status = $validatedData['status'];
         $user->save();
+
+        $this->crmLogService->addCrmLog($user,"Manage Users","userAdd");
+
+        
     }
     public function userEdit($validatedData, User $user): void
     {
@@ -115,5 +126,8 @@ class UserService
         $user->email = $validatedData['email'];
         $user->status = $validatedData['status'];
         $user->save();
+
+        $this->crmLogService->addCrmLog($user,"Manage Users","userEdit");
+        
     }
 }
