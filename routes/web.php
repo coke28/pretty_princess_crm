@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MyEvent;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Account\SettingsController;
 use App\Http\Controllers\PageController;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CrmLogController;
 use App\Http\Controllers\UserLevelController;
+use Illuminate\Support\Facades\Event;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,14 @@ use App\Http\Controllers\UserLevelController;
 Route::get('/', 'PageController@indexPage')->name('get.index');
 Route::get('/login', 'PageController@loginPage')->name('get.login');
 Route::post('/login', 'Auth\AuthenticatedSessionController@store')->name('post.login');
+
+Route::get('/playground',function(){
+
+  Event::dispatch(new MyEvent());
+
+  return "Event Dispatched";
+
+});
 
 Route::middleware('auth')->group(function () {
 
