@@ -31,6 +31,12 @@ class MyEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('public.myEvent.1');
+        return new Channel('MyEvent');
+    }
+
+    public function broadcastWith(){
+        return [
+            'data' => "loggedin"
+        ];
     }
 }
