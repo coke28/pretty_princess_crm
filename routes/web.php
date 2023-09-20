@@ -31,13 +31,13 @@ Route::get('/', 'PageController@indexPage')->name('get.index');
 Route::get('/login', 'PageController@loginPage')->name('get.login');
 Route::post('/login', 'Auth\AuthenticatedSessionController@store')->name('post.login');
 
-Route::get('/playground',function(){
+// Route::get('/playground',function(){
 
-  Event::dispatch(new MyEvent());
+//   Event::dispatch(new MyEvent());
 
-  return "Event Dispatched";
+//   return "Event Dispatched";
 
-});
+// });
 
 Route::middleware('auth')->group(function () {
 

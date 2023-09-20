@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class MyEvent implements ShouldBroadcast
+class LoginEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -31,12 +31,19 @@ class MyEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('MyEvent');
+        return new PresenceChannel('presence.user.1');
     }
 
+    // public function broadcastAs()
+    // {
+    //     return 'LoginEvent';
+    // }
+
+
     public function broadcastWith(){
+        
         return [
-            'data' => "loggedin"
+            'data' => "koki"
         ];
     }
 }
