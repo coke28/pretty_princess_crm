@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\FormEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BarangayFormRequest;
 use App\Models\Form;
 use App\Services\FormService;
+use Event;
 use Illuminate\Http\Request;
 
 class FormController extends Controller
@@ -38,6 +40,7 @@ class FormController extends Controller
             //throw $ex;
             return response()->json(['error' => $exception->getMessage()], 422);
         }
+        Event::dispatch(new FormEvent());
         return json_encode(array(
             'success' => true,
             'message' => 'Form added successfully.'
@@ -59,12 +62,20 @@ class FormController extends Controller
             //throw $ex;
             return response()->json(['error' => $exception->getMessage()], 422);
         }
-
+        Event::dispatch(new FormEvent());
         return json_encode(array(
             'success' => true,
             'message' => 'Form edited successfully.'
         ));
     }
+    public function formGetActiveCount()
+    {
+        return json_encode(array(
+            'success' => true,
+            'formActiveCount' => Form::where('status','1')->count()
+        ));
+    }
+
 
     // public function formDelete(Form $form)
     // {

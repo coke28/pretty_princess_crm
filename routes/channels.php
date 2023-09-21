@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+
+//presence channel - knows all users who are on the channel
+Broadcast::channel('presence.user.{id}', function ($user, $id) {
+    return $user;
+});
+
+
