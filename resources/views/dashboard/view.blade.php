@@ -74,7 +74,7 @@
 
   <!--start::Include your scripts here-->
   @section('scripts')
-  {{-- <script src="{{ '/custom/broadcast/userCount.js' }}"></script> --}}
+  <script src="{{ '/custom/broadcast/userCount.js' }}"></script>
   <script src="{{ '/custom/broadcast/formCount.js' }}"></script>
   @endsection
 
