@@ -67,6 +67,7 @@ Route::middleware('auth')->group(function () {
     Route::post('add', [FormController::class, 'formAdd'])->name('form.add');
     Route::get('get/{form}', [FormController::class, 'formGet'])->name('form.get');
     Route::post('edit/{form}', [FormController::class, 'formEdit'])->name('form.edit');
+    Route::post('activeCount', [FormController::class, 'formGetActiveCount'])->name('form.get.activeCount');
     // Route::post('delete/{form}', [FormController::class, 'formDelete'])->name('form.delete');
   });
 

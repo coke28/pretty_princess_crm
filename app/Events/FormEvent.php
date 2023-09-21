@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Form;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -10,7 +11,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class LoginEvent implements ShouldBroadcast
+class FormEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -31,6 +32,12 @@ class LoginEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PresenceChannel('presence.user.1');
+        return new Channel('public-form.1');
+    }
+    public function broadcastWith()
+    {
+        return [
+            'formActiveCount' => Form::where('status','1')->count()
+        ];
     }
 }

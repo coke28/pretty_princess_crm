@@ -34,7 +34,7 @@
     color: #16c1c0; /* Set card text color to blue */
   }
 
-  .online-user-count {
+  .card-count {
     font-size: 20px;
     font-weight: bold;
     color: #16c1c0; /* Set online user count text color to blue */
@@ -46,7 +46,7 @@
       <div class="card-content">
         <h5 class="card-title">Online Users</h5>
         <p class="card-text">Number of users currently online:</p>
-        <p>Online Users: <span class="online-user-count" id="online-user-count">Loading...</span></p>
+        <p>Online Users: <span class="card-count" id="online-user-count">Loading...</span></p>
       </div>
     </div>
   
@@ -54,7 +54,7 @@
       <div class="card-content">
         <h5 class="card-title">Number Of Active Forms</h5>
         <p class="card-text">Number of forms currently active:</p>
-        <p>Online Users: <span class="online-user-count" id="online-user-count">Loading...</span></p>
+        <p>Online Users: <span class="card-count" id="active-form-count">Loading...</span></p>
       </div>
     </div>
   
@@ -74,7 +74,8 @@
 
   <!--start::Include your scripts here-->
   @section('scripts')
-  <script src="{{ '/custom/broadcast/userCount.js' }}"></script>
+  {{-- <script src="{{ '/custom/broadcast/userCount.js' }}"></script> --}}
+  <script src="{{ '/custom/broadcast/formCount.js' }}"></script>
   @endsection
 
   <!--start::Include your styles here-->
