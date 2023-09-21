@@ -54,7 +54,7 @@
       <div class="card-content">
         <h5 class="card-title">Number Of Active Forms</h5>
         <p class="card-text">Number of forms currently active:</p>
-        <p>Online Users: <span class="card-count" id="active-form-count">Loading...</span></p>
+        <p>Active Forms: <span class="card-count" id="active-form-count">Loading...</span></p>
       </div>
     </div>
   
