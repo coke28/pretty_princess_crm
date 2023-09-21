@@ -96,7 +96,7 @@ window.Swal = window.swal = require('sweetalert2/dist/sweetalert2.min.js');
 require('../../core/js/vendors/plugins/sweetalert2.init.js');
 
 // CountUp.js - is a dependency-free, lightweight JavaScript class that can be used to quickly create animations that display numerical data in a more interesting way.
-window.countUp = require('countup.js/dist/countUp.withPolyfill.min.js');
+window.CountUp = require('countup.js');
 
 // Chart.js - Simple yet flexible JavaScript charting for designers & developers
 window.Chart = require('chart.js/dist/chart.js');
