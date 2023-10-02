@@ -8,7 +8,7 @@
               <div class="d-flex align-items-center position-relative my-1 mb-2 mb-md-0">
                   <div class="input-group input-group-solid">
                       <span class="svg-icon svg-icon-1 input-group-text"><i class="bi bi-search"></i></span>
-                      <input type="text" id="userSearch" class="form-control form-control-lg form-control-solid" placeholder="Search">
+                      <input type="text" id="categorySearch" class="form-control form-control-lg form-control-solid" placeholder="Search">
                       <button class="input-group-text clearInp">
                           <i class="fas fa-times fs-4"></i>
                       </button>
@@ -19,9 +19,9 @@
               <!--begin::Toolbar-->
               <div class="d-flex justify-content-end" data-kt-docs-table-toolbar="base">
                   <!--begin::Add special announcement-->
-                  <button type="button" class="btn btn-primary" title="Add User" data-bs-toggle="modal" data-bs-target="#addUser">
+                  <button type="button" class="btn btn-primary" title="Add Category" data-bs-toggle="modal" data-bs-target="#addCategory">
                       <span class="svg-icon svg-icon-2"><i class="bi bi-plus fs-2"></i></span>
-                      Add User
+                      Add Category
                   </button>
                   <!--end::Add special announcement-->
               </div>
@@ -30,14 +30,12 @@
           <!--end::Wrapper-->
           <!--begin::Datatable-->
           {{-- data-table-route is used to pass the name of the route to the seperate javascript file --}}
-          <table id="user_dt" data-table-route="{{ route('user.table') }}" class="table table-rounded table-striped border gy-7 gs-7">
+          <table id="category_dt" data-table-route="{{ route('category.table') }}" class="table table-rounded table-striped border gy-7 gs-7">
               <thead>
                 <tr class="fw-semibold fs-6 text-black-800 border-bottom border-gray-200">
                     <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>User Level</th>
-                    <th>Email</th>
+                    <th>Category Name</th>
+                    <th>Category Description</th>
                     <th>Status</th>
                     <th>Created At</th>
                     <th>Tools</th>
@@ -51,17 +49,17 @@
       </div>
     
     <!--start::Include your modals here-->
-    @include('tools/manageUsers/modals/addUser')
-    @include('tools/manageUsers/modals/editUser')
+    @include('tools/manageCategories/modals/addCategory')
+    @include('tools/manageCategories/modals/editCategory')
    
   
     <!--start::Include your scripts here-->
     @section('scripts')
         {{-- add random version of script at the end of script tag to prevent the need to F5 refresh --}}
-        <script type="text/javascript" src="{{ "/".'custom/tools/manageUsers/user_dt.js?v=' . rvndev()->getrandomstring(30)}}"></script>
-        <script type="text/javascript" src="{{ "/".'custom/tools/manageUsers/addUserValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
-        <script type="text/javascript" src="{{ "/".'custom/tools/manageUsers/editUserValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
-        {{-- <script type="text/javascript" src="{{ "/".'custom/tools/manageUsers/deleteUserValidation.js?v='. rvndev()->getrandomstring(30) }}"></script> --}}
+        <script type="text/javascript" src="{{ "/".'custom/tools/manageCategories/category_dt.js?v=' . rvndev()->getrandomstring(30)}}"></script>
+        <script type="text/javascript" src="{{ "/".'custom/tools/manageCategories/addCategoryValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
+        <script type="text/javascript" src="{{ "/".'custom/tools/manageCategories/editCategoryValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
+        <script type="text/javascript" src="{{ "/".'custom/tools/manageCategories/deleteCategoryValidation.js?v='. rvndev()->getrandomstring(30) }}"></script>
     @endsection  
     
       <!--start::Include your styles here-->

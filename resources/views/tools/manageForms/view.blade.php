@@ -74,6 +74,6 @@
     
    
     
-  </x-base-layout>
+  </x-CRM-layout>
   
     

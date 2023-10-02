@@ -20,26 +20,10 @@ class UsersSeeder extends Seeder
         $demoUser = User::create([
             'first_name'        => $faker->firstName,
             'last_name'         => $faker->lastName,
+            'user_level_id'             => '1',
             'email'             => 'demo@demo.com',
             'password'          => Hash::make('demo'),
             'email_verified_at' => now(),
         ]);
-
-        $dummyInfo = [
-            'company'  => $faker->company,
-            'phone'    => $faker->phoneNumber,
-            'website'  => $faker->url,
-            'language' => $faker->languageCode,
-            'country'  => $faker->countryCode,
-        ];
-
-        $info = new UserInfo();
-        foreach ($dummyInfo as $key => $value) {
-            $info->$key = $value;
-        }
-        $info->user()->associate($demoUser);
-        $info->save();
-
-        // User::factory(10)->create();
     }
 }

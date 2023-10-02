@@ -12,7 +12,10 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CrmLogController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserLevelController;
 use Illuminate\Support\Facades\Event;
 
@@ -71,12 +74,41 @@ Route::middleware('auth')->group(function () {
     // Route::post('delete/{form}', [FormController::class, 'formDelete'])->name('form.delete');
   });
 
+  Route::group(['prefix' => 'category'], function () {
+    //Form Routes
+    Route::get('/', [PageController::class, 'manageCategory'])->name('category.index');
+    Route::post('table', [CategoryController::class, 'categoryTB'])->name('category.table');
+    Route::post('add', [CategoryController::class, 'categoryAdd'])->name('category.add');
+    Route::get('get/{category}', [CategoryController::class, 'categoryGet'])->name('category.get');
+    Route::post('edit/{category}', [CategoryController::class, 'categoryEdit'])->name('category.edit');
+    Route::post('delete/{category}', [CategoryController::class, 'categoryDelete'])->name('category.delete');
+  });
+
+  Route::group(['prefix' => 'location'], function () {
+    //Form Routes
+    Route::get('/', [PageController::class, 'manageLocation'])->name('location.index');
+    Route::post('table', [LocationController::class, 'locationTB'])->name('location.table');
+    Route::post('add', [LocationController::class, 'locationAdd'])->name('location.add');
+    Route::get('get/{location}', [LocationController::class, 'locationGet'])->name('location.get');
+    Route::post('edit/{location}', [LocationController::class, 'locationEdit'])->name('location.edit');
+    Route::post('delete/{location}', [LocationController::class, 'locationDelete'])->name('location.delete');
+  });
+
+
+
   Route::group(['prefix' => 'crmLog'], function () {
     //Form Routes
     Route::get('/', [PageController::class, 'manageCrmLog'])->name('crmLog.index');
     Route::post('table', [CrmLogController::class, 'crmLogTB'])->name('crmLog.table');
     Route::post('delete/{crmLog}', [CrmLogController::class, 'crmLogDelete'])->name('crmLog.delete');
   });
+
+  Route::group(['prefix' => 'upload'], function () {
+    //Form Routes
+    Route::get('/', [PageController::class, 'uploadIndex'])->name('upload.index');
+    Route::post('/', [UploadController::class, 'queueFile'])->name('upload.queue');
+  });
+
   Route::post('/logout', 'Auth\AuthenticatedSessionController@destroy')->name('logout');
   Route::get('/dashboard', 'PageController@dashboardPage')->name('user.dash');
 });

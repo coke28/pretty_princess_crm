@@ -55,7 +55,7 @@ $(document).ready(function (){
                  "showMethod": "fadeIn",
                  "hideMethod": "fadeOut"
                };
-
+               data = JSON.parse(data);
                toastr.success(data, "Success");
                blockUI.release();
                blockUI.destroy();

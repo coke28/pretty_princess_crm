@@ -78,6 +78,42 @@ class PageController extends Controller
     ));
   }
 
+  public function manageCategory()
+  {
+    // $hasAccess = $this->permissionCheck(auth()->user()->userlevel->n2_forms);
+    // if (!$hasAccess) {
+    //   if (Auth::check()) {
+    //     // The user is logged in...
+    //     return redirect()->route('user.dash');
+    //   } else {
+    //     return redirect()->route('get.login');
+    //   }
+    // }
+    return view('tools.manageCategories.view', array(
+      'pageTitle' => 'Manage Categories',
+      'pageDescription' => '',
+    ));
+  }
+
+  public function manageLocation()
+  {
+    // $hasAccess = $this->permissionCheck(auth()->user()->userlevel->n2_forms);
+    // if (!$hasAccess) {
+    //   if (Auth::check()) {
+    //     // The user is logged in...
+    //     return redirect()->route('user.dash');
+    //   } else {
+    //     return redirect()->route('get.login');
+    //   }
+    // }
+    return view('tools.manageLocations.view', array(
+      'pageTitle' => 'Manage Location',
+      'pageDescription' => '',
+    ));
+  }
+
+
+
   public function manageForm()
   {
     $hasAccess = $this->permissionCheck(auth()->user()->userlevel->n2_forms);
@@ -91,6 +127,23 @@ class PageController extends Controller
     }
     return view('tools.manageForms.view', array(
       'pageTitle' => 'Manage Forms',
+      'pageDescription' => '',
+    ));
+  }
+
+  public function uploadIndex()
+  {
+    // $hasAccess = $this->permissionCheck(auth()->user()->userlevel->n2_forms);
+    // if (!$hasAccess) {
+    //   if (Auth::check()) {
+    //     // The user is logged in...
+    //     return redirect()->route('user.dash');
+    //   } else {
+    //     return redirect()->route('get.login');
+    //   }
+    // }
+    return view('pages.uploadFile.view', array(
+      'pageTitle' => 'Upload File',
       'pageDescription' => '',
     ));
   }

@@ -2,27 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UserLevelRequest;
-use App\Models\UserLevel;
-use App\Services\UserLevelService;
-use DB;
+use App\Http\Requests\CategoryRequest;
+use App\Models\Category;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
-class UserLevelController extends Controller
+class CategoryController extends Controller
 {
-    private UserLevelService $userLevelService;
+    //
+    private CategoryService $categoryService;
 
-    public function __construct(UserLevelService $userLevelService)
+    public function __construct(CategoryService $categoryService)
     {
-        $this->userLevelService = $userLevelService;
+        $this->categoryService = $categoryService;
     }
 
-    public function userLevelTB(Request $request)
+    public function categoryTB(Request $request)
     {
         try {
             //code...
-            $result = $this->userLevelService->userLevelTB($request);
+            $result = $this->categoryService->categoryTB($request);
         } catch (\Exception $exception) {
             //throw $ex;
             return response()->json(['error' => $exception->getMessage()],422);
@@ -30,11 +29,11 @@ class UserLevelController extends Controller
         return json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
     }
     //Using backend form validation and insertion
-    public function userLevelAdd(UserLevelRequest $request)
+    public function categoryAdd(CategoryRequest $request)
     {
         try {
             //code...
-            $this->userLevelService->userLevelAdd($request->validated());
+            $this->categoryService->categoryAdd($request->validated());
         } catch (\Exception $exception) {
             //throw $ex;
             return response()->json(['error' => $exception->getMessage()],422);
@@ -42,21 +41,21 @@ class UserLevelController extends Controller
 
         return json_encode(array(
             'success' => true,
-            'message' => 'User level added successfully.'
+            'message' => 'Category added successfully.'
         ));
     }
     //Using route model binding
-    public function userLevelGet(UserLevel $userLevel)
+    public function categoryGet(Category $category)
     {
-        return json_encode($userLevel);
+        return json_encode($category);
     }
 
-    public function userLevelEdit(UserLevelRequest $request, UserLevel $userLevel)
+    public function categoryEdit(CategoryRequest $request, Category $category)
     {
         //Get validated Data 
         try {
             //code...
-            $this->userLevelService->userLevelEdit($request->validated(),$userLevel);
+            $this->categoryService->categoryEdit($request->validated(),$category);
         } catch (\Exception $exception) {
             //throw $ex;
             return response()->json(['error' => $exception->getMessage()],422);
@@ -64,23 +63,23 @@ class UserLevelController extends Controller
        
         return json_encode(array(
             'success' => true,
-            'message' => 'User level edited successfully.'
+            'message' => 'Category edited successfully.'
         ));
     }
 
-    public function userLevelDelete(UserLevel $userLevel)
+    public function categoryDelete(Category $category)
     {
         try {
             //code...
-            $this->userLevelService->userLevelDelete($userLevel);
+            $this->categoryService->categoryDelete($category);
         } catch (\Exception $exception) {
             //throw $ex;
             return response()->json(['error' => $exception->getMessage()],422);
         }
         return json_encode(array(
             'success' => true,
-            'message' => 'User level has been deleted.'
+            'message' => 'Category has been deleted.'
         ));
     }
-}
 
+}

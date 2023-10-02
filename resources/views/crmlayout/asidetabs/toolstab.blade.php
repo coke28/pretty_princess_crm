@@ -35,17 +35,30 @@
         </div>
         @endif
 
-        @if(auth()->user()->userlevel->n2_forms == 1)
+        {{-- @if(auth()->user()->userlevel->n2_user_roles == 1) --}}
         <div class="menu-item">
-            <a class="menu-link {{ rvndev()->getActiveNavClass('page', 'form.index')['main'] }}"
-                href="{{ route('form.index', [], false) }}">
+            <a class="menu-link {{ rvndev()->getActiveNavClass('page', 'category.index')['main'] }}"
+                href="{{ route('category.index', [], false) }}">
                 <span class="menu-icon">
                     {!! theme()->getSvgIcon('icons/duotone/Design/PenAndRuller.svg', "svg-icon-2") !!}
                 </span>
-                <span class="menu-title">Manage Forms</span>
+                <span class="menu-title">Manage Categories</span>
             </a>
         </div>
-        @endif
+        {{-- @endif --}}
+
+
+        {{-- @if(auth()->user()->userlevel->n2_forms == 1) --}}
+        <div class="menu-item">
+            <a class="menu-link {{ rvndev()->getActiveNavClass('page', 'location.index')['main'] }}"
+                href="{{ route('location.index', [], false) }}">
+                <span class="menu-icon">
+                    {!! theme()->getSvgIcon('icons/duotone/Design/PenAndRuller.svg', "svg-icon-2") !!}
+                </span>
+                <span class="menu-title">Manage Locations</span>
+            </a>
+        </div>
+        {{-- @endif --}}
 
         @if(auth()->user()->userlevel->n2_crm_logs == 1)
         <div class="menu-item">

@@ -1,13 +1,14 @@
 $(document).ready(function (){
 
-    jQuery(document).off('click', '#delete_form');
-    jQuery(document).on('click', '#delete_form', function(e) {
+    jQuery(document).off('click', '#delete_category');
+    jQuery(document).on('click', '#delete_category', function(e) {
       e.preventDefault();
       var id = $(this).data('id');
+      console.log($(this).data())
         //makes sent data name in dt to lowercase
       //console.log($(this).data());
       Swal.fire({
-          html: `Are you sure you want to delete ID: `+$(this).data('id')+` `+$(this).data('name')+`?`,
+          html: `Are you sure you want to delete ID: `+$(this).data('id')+` `+$(this).data('categoryname')+`?`,
           icon: "info",
           buttonsStyling: false,
           showCancelButton: true,
@@ -20,13 +21,13 @@ $(document).ready(function (){
       }).then(function (result) {
 
           if(result.isConfirmed){
-            var target = document.querySelector("#form_dt");
+            var target = document.querySelector("#category_dt");
             var blockUI = new KTBlockUI(target, {
                 message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
             });
             blockUI.block();
             $.ajax({
-              url: "/form/delete/"+id,
+              url: "/category/delete/"+id,
               type: "POST",
               contentType: false,
               cache: false,
@@ -54,7 +55,7 @@ $(document).ready(function (){
                toastr.success(data.message, "Success");
                blockUI.release();
                blockUI.destroy();
-               $('#form_dt').DataTable().ajax.reload();
+               $('#category_dt').DataTable().ajax.reload();
               }
             });
           }

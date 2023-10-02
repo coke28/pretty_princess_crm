@@ -2,27 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UserLevelRequest;
-use App\Models\UserLevel;
-use App\Services\UserLevelService;
-use DB;
+use App\Http\Requests\LocationRequest;
+use App\Models\Location;
+use App\Services\LocationService;
 use Illuminate\Http\Request;
 
-class UserLevelController extends Controller
+class LocationController extends Controller
 {
-    private UserLevelService $userLevelService;
+    //
+    private LocationService $locationService;
 
-    public function __construct(UserLevelService $userLevelService)
+    public function __construct(LocationService $locationService)
     {
-        $this->userLevelService = $userLevelService;
+        $this->locationService = $locationService;
     }
 
-    public function userLevelTB(Request $request)
+    public function locationTB(Request $request)
     {
         try {
             //code...
-            $result = $this->userLevelService->userLevelTB($request);
+            $result = $this->locationService->locationTB($request);
         } catch (\Exception $exception) {
             //throw $ex;
             return response()->json(['error' => $exception->getMessage()],422);
@@ -30,11 +29,11 @@ class UserLevelController extends Controller
         return json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
     }
     //Using backend form validation and insertion
-    public function userLevelAdd(UserLevelRequest $request)
+    public function locationAdd(LocationRequest $request)
     {
         try {
             //code...
-            $this->userLevelService->userLevelAdd($request->validated());
+            $this->locationService->locationAdd($request->validated());
         } catch (\Exception $exception) {
             //throw $ex;
             return response()->json(['error' => $exception->getMessage()],422);
@@ -42,21 +41,21 @@ class UserLevelController extends Controller
 
         return json_encode(array(
             'success' => true,
-            'message' => 'User level added successfully.'
+            'message' => 'Location added successfully.'
         ));
     }
     //Using route model binding
-    public function userLevelGet(UserLevel $userLevel)
+    public function locationGet(Location $location)
     {
-        return json_encode($userLevel);
+        return json_encode($location);
     }
 
-    public function userLevelEdit(UserLevelRequest $request, UserLevel $userLevel)
+    public function locationEdit(LocationRequest $request, Location $location)
     {
         //Get validated Data 
         try {
             //code...
-            $this->userLevelService->userLevelEdit($request->validated(),$userLevel);
+            $this->locationService->locationEdit($request->validated(),$location);
         } catch (\Exception $exception) {
             //throw $ex;
             return response()->json(['error' => $exception->getMessage()],422);
@@ -64,23 +63,23 @@ class UserLevelController extends Controller
        
         return json_encode(array(
             'success' => true,
-            'message' => 'User level edited successfully.'
+            'message' => 'Location edited successfully.'
         ));
     }
 
-    public function userLevelDelete(UserLevel $userLevel)
+    public function locationDelete(Location $location)
     {
         try {
             //code...
-            $this->userLevelService->userLevelDelete($userLevel);
+            $this->locationService->locationDelete($location);
         } catch (\Exception $exception) {
             //throw $ex;
             return response()->json(['error' => $exception->getMessage()],422);
         }
         return json_encode(array(
             'success' => true,
-            'message' => 'User level has been deleted.'
+            'message' => 'Location has been deleted.'
         ));
     }
-}
 
+}
