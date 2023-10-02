@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Location;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -145,6 +147,8 @@ class PageController extends Controller
     return view('pages.uploadFile.view', array(
       'pageTitle' => 'Upload File',
       'pageDescription' => '',
+      'categories' => Category::where('status','1')->where('deleted','0')->get(),
+      'locations' => Location::where('status','1')->where('deleted','0')->get(),
     ));
   }
 

@@ -1,4 +1,24 @@
 <x-CRM-layout :pageTitle="$pageTitle" :pageDescription="$pageDescription">
+    <style type="text/css">
+    .error-box {
+        border: 1px solid red;
+        /* Add a red border around the error messages */
+        background-color: #fdd;
+        /* Set a background color for the error messages box */
+        padding: 10px;
+        /* Add some padding to create space around the error messages */
+        margin-bottom: 10px;
+        /* Optional: Add some space between the error box and the form fields */
+    }
+
+    .error-message {
+        color: red;
+        /* Set the text color to red */
+        font-size: 14px;
+        /* Optional: Adjust the font size */
+    }
+</style>
+
     <ul class="nav nav-tabs nav-pills flex-row border-0 me-5 mb-3 fs-6">
         <li class="nav-item me-2 mb-2">
             <a class="nav-link active btn btn-flex btn-active-light-success" data-bs-toggle="tab" href="#kt_tab_pane_4">
@@ -94,13 +114,14 @@
 
                     </div>
 
-                    <form class="form" id="upload_form">
+                    <form action="{{ route('upload.file') }}" class="form" id="upload_form"
+                        enctype="multipart/form-data">
                         <div class="row mb-12">
                             <div class="col-lg-6">
-                                <label for="campaignName" class="col-form-label fw-bold fs-6">Campaign
+                                <label for="campaign_name" class="col-form-label fw-bold fs-6">Campaign
                                     Name</label>
-                                <div class="col-lg-12 fv-row" id="campaignName">
-                                    <input type="text" name="campaignName"
+                                <div class="col-lg-12 fv-row" id="campaign_name">
+                                    <input type="text" name="campaign_name"
                                         class="form-control form-control-sm form-control-solid"
                                         placeholder="Enter Campaign Name..">
                                 </div>
@@ -109,10 +130,10 @@
                             <div class="col-lg-6">
                                 <label for="campaignGrouping" class="col-form-label fw-bold fs-6">Campaign
                                     Grouping</label>
-                                <div class="col-lg-12 fv-row" id="campaignGroup">
-                                    <select class="form-select form-select-sm form-select-solid" name="campaignGroup">
-                                        {{-- @foreach ($groups as $group )
-                                        <option value="{{ $group->groupName }}">{{ $group->groupName}}</option>
+                                <div class="col-lg-12 fv-row" id="campaign_group">
+                                    <select class="form-select form-select-sm form-select-solid" name="campaign_group">
+                                        {{-- @foreach ($groups as $category )
+                                        <option value="{{ $category->groupName }}">{{ $category->groupName}}</option>
                                         @endforeach --}}
                                     </select>
                                 </div>
@@ -125,9 +146,9 @@
                                 </label>
                                 <div class="col-lg-12 fv-row" id="location">
                                     <select class="form-select form-select-sm form-select-solid" name="location">
-                                        {{-- @foreach ($groups as $group )
-                                        <option value="{{ $group->groupName }}">{{ $group->groupName}}</option>
-                                        @endforeach --}}
+                                        @foreach ($locations as $location )
+                                        <option value="{{ $location->id }}">{{ $location->location_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -137,9 +158,9 @@
                                 </label>
                                 <div class="col-lg-12 fv-row" id="category">
                                     <select class="form-select form-select-sm form-select-solid" name="category">
-                                        {{-- @foreach ($groups as $group )
-                                        <option value="{{ $group->groupName }}">{{ $group->groupName}}</option>
-                                        @endforeach --}}
+                                        @foreach ($categories as $category )
+                                        <option value="{{ $category->id }}">{{ $category->category_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -153,8 +174,23 @@
                                     class="form-control form-control-lg form-control-solid" accept=".csv, .xlsx" />
                             </div>
                         </div>
+                        <br>
+                        {{-- <div class="error-box" style="display: none;">
+                            <div id="" class="error-message">Server Validation Errors</div>
+                            <div id="campaign_name_error" class="error-message"></div>
+                            <div id="file_error" class="error-message"></div>
+                            <div id="location_error" class="error-message"></div>
+                            <div id="category_error" class="error-message"></div>
+                        </div> --}}
+
+                        <div class="error-box" style="display: none;">
+                            <div id="" class="error-message">Incorrect File format</div>
+                            <div id="error-message" class="error-message"></div>
+                        </div>
+
+
                         <div class="modal-footer">
-                            <button type="submit" id="uploadSubmitBtn" class="btn btn-primary font-weight-bold">Queue
+                            <button type="submit" id="uploadSubmitBtn" class="btn btn-primary font-weight-bold" disabled = "true">
                                 Upload File</button>
                         </div>
                     </form>
@@ -173,7 +209,7 @@
 
     @section('scripts')
     {{-- add random version of script at the end of script tag to prevent the need to F5 refresh --}}
-    {{-- <script type="text/javascript" src="{{ " /".'custom/upload/csv_excel_upload.js?v=' . rvndev()->getRandom(30)}}"></script> --}}
+    <script type="text/javascript" src="{{ "/".'custom/upload/upload_file.js?v=' . rvndev()->getrandomstring(30)}}"></script>
     @endsection  
 
    

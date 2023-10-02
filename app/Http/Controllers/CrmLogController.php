@@ -35,7 +35,9 @@ class CrmLogController extends Controller
             $this->crmLogService->crmLogDelete($crmLog);
         } catch (\Exception $exception) {
             //throw $ex;
-            return response()->json(['error' => $exception->getMessage()],422);
+            return response()->json([
+                'error' => $exception->getMessage(),
+            ],422);
         }
         return json_encode(array(
             'success' => true,

@@ -10,6 +10,7 @@ class UniqueExceptCurrent implements Rule
     protected $table;
     protected $column;
     protected $id;
+    protected $model;
 
     public function __construct($table, $column, $model)
     {

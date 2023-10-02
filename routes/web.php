@@ -94,8 +94,6 @@ Route::middleware('auth')->group(function () {
     Route::post('delete/{location}', [LocationController::class, 'locationDelete'])->name('location.delete');
   });
 
-
-
   Route::group(['prefix' => 'crmLog'], function () {
     //Form Routes
     Route::get('/', [PageController::class, 'manageCrmLog'])->name('crmLog.index');
@@ -106,7 +104,8 @@ Route::middleware('auth')->group(function () {
   Route::group(['prefix' => 'upload'], function () {
     //Form Routes
     Route::get('/', [PageController::class, 'uploadIndex'])->name('upload.index');
-    Route::post('/', [UploadController::class, 'queueFile'])->name('upload.queue');
+    Route::post('/', [UploadController::class, 'uploadFile'])->name('upload.file');
+    // Route::post('/', [UploadController::class, 'queueFile'])->name('upload.queue');
   });
 
   Route::post('/logout', 'Auth\AuthenticatedSessionController@destroy')->name('logout');
