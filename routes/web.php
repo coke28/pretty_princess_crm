@@ -12,8 +12,10 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\FormController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CampaignUploadLogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CrmLogController;
+use App\Http\Controllers\LeadController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\UserLevelController;
@@ -63,6 +65,7 @@ Route::middleware('auth')->group(function () {
     Route::post('edit/{userLevel}', [UserLevelController::class, 'userLevelEdit'])->name('userLevel.edit');
     Route::post('delete/{userLevel}', [UserLevelController::class, 'userLevelDelete'])->name('userLevel.delete');
   });
+
   Route::group(['prefix' => 'form'], function () {
     //Form Routes
     Route::get('/', [PageController::class, 'manageForm'])->name('form.index');
@@ -73,6 +76,28 @@ Route::middleware('auth')->group(function () {
     Route::post('activeCount', [FormController::class, 'formGetActiveCount'])->name('form.get.activeCount');
     // Route::post('delete/{form}', [FormController::class, 'formDelete'])->name('form.delete');
   });
+
+  Route::group(['prefix' => 'lead'], function () {
+    //Form Routes
+    Route::get('/', [PageController::class, 'manageLead'])->name('lead.index');
+    Route::post('table', [LeadController::class, 'leadTB'])->name('lead.table');
+    Route::post('add', [LeadController::class, 'leadAdd'])->name('lead.add');
+    Route::get('get/{lead}', [LeadController::class, 'leadGet'])->name('lead.get');
+    Route::post('edit/{lead}', [LeadController::class, 'leadEdit'])->name('lead.edit');
+    Route::post('delete/{lead}', [LeadController::class, 'leadDelete'])->name('lead.delete');
+  });
+
+  Route::group(['prefix' => 'export'], function () {
+    //Form Routes
+    Route::get('/', [PageController::class, 'manageExport'])->name('export.index');
+    // Route::post('table', [LeadController::class, 'leadTB'])->name('export.table');
+    // Route::post('add', [LeadController::class, 'leadAdd'])->name('export.add');
+    // Route::get('get/{lead}', [LeadController::class, 'leadGet'])->name('export.get');
+    // Route::post('edit/{lead}', [LeadController::class, 'leadEdit'])->name('export.edit');
+    // Route::post('delete/{lead}', [LeadController::class, 'leadDelete'])->name('export.delete');
+  });
+
+
 
   Route::group(['prefix' => 'category'], function () {
     //Form Routes
@@ -107,6 +132,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/', [UploadController::class, 'uploadFile'])->name('upload.file');
     // Route::post('/', [UploadController::class, 'queueFile'])->name('upload.queue');
   });
+
+  Route::group(['prefix' => 'campaignUploadLog'], function () {
+    //Form Routes
+    Route::post('/', [CampaignUploadLogController::class, 'campaignUploadLogTB'])->name('campaignUploadLog.table');
+    Route::post('/delete/{campaignUploadLog}', [CampaignUploadLogController::class, 'campaignUploadLogDelete'])->name('campaignUploadLog.delete');
+  });
+
 
   Route::post('/logout', 'Auth\AuthenticatedSessionController@destroy')->name('logout');
   Route::get('/dashboard', 'PageController@dashboardPage')->name('user.dash');

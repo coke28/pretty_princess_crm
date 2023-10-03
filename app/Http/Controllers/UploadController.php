@@ -3,40 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Imports\LeadImport;
+use App\Models\CampaignUploadLog;
 use App\Rules\UniqueExceptCurrent;
+use App\Services\CampaignUploadLogService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
 class UploadController extends Controller
 {
     //
+    private CampaignUploadLogService $campaignUploadLogService;
+
+    public function __construct(CampaignUploadLogService $campaignUploadLogService)
+    {
+        $this->campaignUploadLogService = $campaignUploadLogService;
+    }
+
     public function uploadFile(Request $request)
     {
-        // $campaignUpload = CampaignUpload::where('campaignID', $request->campaignID)->where('deleted', '0')->get()->count();
-        // // ->where('deleted', '0')
-        // if ($campaignUpload > 0) {
-        //     return json_encode(array(
-        //         'success' => false,
-        //         'message' => 'Campaign ID already in-use.'
-        //     ));
-        // }
-
+        $campaignUploadCount = CampaignUploadLog::where('campaign_name', $request->campaign_name)->where('deleted', '0')->count();
+        if ($campaignUploadCount > 0) {
+            return response()->json([
+                'error' => "Campaign Name already in-use.",
+                'alert' => true,
+            ], 422);
+        }
         try {
             $file = $request->file('file');
             $import = new LeadImport($request->campaign_name, $request->location, $request->category);
             $import->import($file);
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
-            return response()->json(['error' => $e->failures()],422);
+            return response()->json(['error' => $e->failures()], 422);
         }
+        $this->campaignUploadLogService->addCampaignUploadLog($request->campaign_name, auth()->user()->id);
         return json_encode(array(
             'success' => true,
             'message' => "Uploaded succesfully!"
         ));
     }
 }
-  //  foreach ($failures as $failure) {
-        //      $failure->row(); // row that went wrong
-        //      $failure->attribute(); // either heading key (if using heading row concern) or column index
-        //      $failure->errors(); // Actual error messages from Laravel validator
-        //      $failure->values(); // The values of the row that has failed.
-        //  }

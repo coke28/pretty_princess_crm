@@ -39,7 +39,9 @@ class RVNDevFunc
       if($navtitle == 'crmapps'){
         $included_routes = [
           'user.dash',
-          'upload.index'
+          'upload.index',
+          'lead.index',
+          'export.index'
         ];
       }
 

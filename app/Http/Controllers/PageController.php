@@ -80,6 +80,42 @@ class PageController extends Controller
     ));
   }
 
+  public function manageLead()
+  {
+    // $hasAccess = $this->permissionCheck(auth()->user()->userlevel->n2_forms);
+    // if (!$hasAccess) {
+    //   if (Auth::check()) {
+    //     // The user is logged in...
+    //     return redirect()->route('user.dash');
+    //   } else {
+    //     return redirect()->route('get.login');
+    //   }
+    // }
+    return view('pages.leads.view', array(
+      'pageTitle' => 'Manage Leads',
+      'pageDescription' => '',
+    ));
+  }
+
+  public function manageExport()
+  {
+    // $hasAccess = $this->permissionCheck(auth()->user()->userlevel->n2_forms);
+    // if (!$hasAccess) {
+    //   if (Auth::check()) {
+    //     // The user is logged in...
+    //     return redirect()->route('user.dash');
+    //   } else {
+    //     return redirect()->route('get.login');
+    //   }
+    // }
+    return view('pages.exports.view', array(
+      'pageTitle' => 'Export Emails',
+      'pageDescription' => 'Filter Leads, Review then Send Emails!',
+    ));
+  }
+
+
+
   public function manageCategory()
   {
     // $hasAccess = $this->permissionCheck(auth()->user()->userlevel->n2_forms);

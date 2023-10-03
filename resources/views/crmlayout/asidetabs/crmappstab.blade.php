@@ -32,5 +32,38 @@
       <!--end::Menu Item-->
       {{-- @endif --}}
     </div>
+
+    
+    <div id="kt_aside_menu_wrapper" class="menu-fit">
+      {{-- @if(auth()->user()->userlevel->n2_dashboard == 1) --}}
+      <!-- begin::Menu Item-->
+      <div class="menu-item">
+          <a class="menu-link {{ rvndev()->getActiveNavClass('page', 'lead.index')['main'] }}" href="{{ route('lead.index', [], false) }}">
+            <span class="menu-icon">
+              {!! theme()->getSvgIcon('icons/duotone/Design/PenAndRuller.svg', "svg-icon-2") !!}
+            </span>
+            <span class="menu-title">Manage Leads</span>
+          </a>
+      </div>
+      <!--end::Menu Item-->
+      {{-- @endif --}}
+    </div>
+
+    <div id="kt_aside_menu_wrapper" class="menu-fit">
+      {{-- @if(auth()->user()->userlevel->n2_dashboard == 1) --}}
+      <!-- begin::Menu Item-->
+      <div class="menu-item">
+          <a class="menu-link {{ rvndev()->getActiveNavClass('page', 'export.index')['main'] }}" href="{{ route('export.index', [], false) }}">
+            <span class="menu-icon">
+              {!! theme()->getSvgIcon('icons/duotone/Design/PenAndRuller.svg', "svg-icon-2") !!}
+            </span>
+            <span class="menu-title">Export Emails</span>
+          </a>
+      </div>
+      <!--end::Menu Item-->
+      {{-- @endif --}}
+    </div>
+
+
 </div>
 <!--end::Menu-->
