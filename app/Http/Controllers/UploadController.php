@@ -26,15 +26,8 @@ class UploadController extends Controller
             $import = new LeadImport($request->campaign_name, $request->location, $request->category);
             $import->import($file);
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
-            // return json_encode(array(
-            //     'success' => false,
-            //     'message' => $e->failures(),
-
-            // ));
-
             return response()->json(['error' => $e->failures()],422);
         }
-
         return json_encode(array(
             'success' => true,
             'message' => "Uploaded succesfully!"

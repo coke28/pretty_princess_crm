@@ -1,24 +1,3 @@
-// jQuery(document).on("change", "#selectScheduleType", function (e) {
-//     e.preventDefault();
-
-//     var selectScheduleType = $(this).val();
-//     console.log(selectScheduleType);
-
-//     switch (selectScheduleType) {
-//         case "SCHEDULED":
-//             $("#dateGroup").show("fadein");
-//             break;
-//         case "NOW":
-//             $("#dateGroup").fadeOut("slow");
-//             $('#date').val("");
-//             break;
-
-//         default:
-//             console.log("defaulted");
-//         // code to be executed if n is different from case 1 and 2
-//     }
-// });
-
 // Class definition
 var uploadValidation = (function () {
     // Private functions
@@ -172,6 +151,8 @@ var uploadValidation = (function () {
                 
                     // Show the error box
                     $(".error-box").show();
+                    $('#upload_form [name="file"]').val('');
+
                     document
                         .getElementById("uploadSubmitBtn")
                         .setAttribute("data-kt-indicator", "off");
