@@ -13,15 +13,15 @@ class RenameStatisticsCounters extends Migration
      */
     public function up()
     {
-        Schema::table('websockets_statistics_entries', function (Blueprint $table) {
-            $table->renameColumn('peak_connection_count', 'peak_connections_count');
-        });
-        Schema::table('websockets_statistics_entries', function (Blueprint $table) {
-            $table->renameColumn('websocket_message_count', 'websocket_messages_count');
-        });
-        Schema::table('websockets_statistics_entries', function (Blueprint $table) {
-            $table->renameColumn('api_message_count', 'api_messages_count');
-        });
+        // Schema::table('websockets_statistics_entries', function (Blueprint $table) {
+        //     $table->renameColumn('peak_connection_count', 'peak_connections_count');
+        // });
+        // Schema::table('websockets_statistics_entries', function (Blueprint $table) {
+        //     $table->renameColumn('websocket_message_count', 'websocket_messages_count');
+        // });
+        // Schema::table('websockets_statistics_entries', function (Blueprint $table) {
+        //     $table->renameColumn('api_message_count', 'api_messages_count');
+        // });
     }
 
     /**

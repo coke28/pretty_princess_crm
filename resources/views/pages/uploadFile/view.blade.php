@@ -39,7 +39,7 @@
                         <!--end::Svg Icon-->
                     </span></span>
                 <span class="d-flex flex-column align-items-start ms-2">
-                    <span class="fs-4 fw-bold">Upload 1</span>
+                    <span class="fs-4 fw-bold">Upload</span>
                     <span class="fs-7">Upload CSV/Excel File</span>
                 </span>
             </a>
@@ -127,17 +127,17 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-6">
+                            {{-- <div class="col-lg-6">
                                 <label for="campaignGrouping" class="col-form-label fw-bold fs-6">Campaign
                                     Grouping</label>
                                 <div class="col-lg-12 fv-row" id="campaign_group">
                                     <select class="form-select form-select-sm form-select-solid" name="campaign_group">
-                                        {{-- @foreach ($groups as $category )
+                                        @foreach ($groups as $category )
                                         <option value="{{ $category->groupName }}">{{ $category->groupName}}</option>
-                                        @endforeach --}}
+                                        @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="row mb-12">

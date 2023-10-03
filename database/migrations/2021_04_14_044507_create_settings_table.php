@@ -27,13 +27,13 @@ class CreateSettingsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create($this->tablename, function(Blueprint $table)
-		{
-			$table->increments('id');
-			$table->string($this->keyColumn)->index();
-			$table->text($this->valueColumn);
-			$table->unsignedBigInteger('user_id')->nullable();
-		});
+		// Schema::create($this->tablename, function(Blueprint $table)
+		// {
+		// 	$table->increments('id');
+		// 	$table->string($this->keyColumn)->index();
+		// 	$table->text($this->valueColumn);
+		// 	$table->unsignedBigInteger('user_id')->nullable();
+		// });
 	}
 
 	/**
@@ -43,6 +43,6 @@ class CreateSettingsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop($this->tablename);
+		// Schema::drop($this->tablename);
 	}
 }
