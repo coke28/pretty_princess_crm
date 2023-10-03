@@ -48,7 +48,7 @@ class LeadImport implements ToModel, WithValidation, WithHeadingRow, ShouldAutoS
         return [
             'company_name' => 'required|string',
             'address' => 'required|string',
-            'email_address' => 'email',
+            'email_address' => 'required|email',
             'contact_information' => 'string',
             'website' => 'required|string',
             'facebook' => 'required|string',

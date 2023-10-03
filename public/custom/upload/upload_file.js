@@ -125,6 +125,7 @@ var uploadValidation = (function () {
                         // $('#add_user_form [name="user_level_id"]').val('').trigger('change');
                         //   $('#application_type_dt').DataTable().ajax.reload();
                     }
+                    $(".error-box").hide();
 
                     document
                         .getElementById("uploadSubmitBtn")
