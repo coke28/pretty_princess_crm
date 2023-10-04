@@ -7,6 +7,13 @@
 /public/media
 /public/plugins
 
+/public/demo1
+/public/demo2
+/public/demo3
+/public/demo4
+/public/demo5
+/public/demo6
+/public/demo7
 
 /storage/*.key
 /vendor
