@@ -52,9 +52,9 @@ var editUserLevelValidation = (function () {
             // Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
             var formx = $("#edit_user_level_form")[0]; // You need to use standart javascript object here
             var formDatax = new FormData(formx);
-            var selectedID = formDatax.get('id');
+            var selectedID = formDatax.get("id");
             $.ajax({
-                url: "/userLevel/edit/"+selectedID,
+                url: "/userLevel/edit/" + selectedID,
                 type: "POST",
                 data: formDatax,
                 contentType: false,
@@ -146,51 +146,79 @@ jQuery(document).ready(function () {
     //DONT FOGET THIS!!!
     editUserLevelValidation.init();
 
-    jQuery(document).off('change', '#edit_user_level_form [type="checkbox"]');
-    jQuery(document).on('change', '#edit_user_level_form [type="checkbox"]', function(e) {
-      console.log($(this).is(':checkbox'));
-      var thisname = $(this).attr('name');
-      if($(this).is(":checked")){
-        $('#edit_user_level_form .'+thisname).slideDown(250).prop('checked', true);
-      }
-      else {
-        $('#edit_user_level_form .'+thisname).slideUp(250).prop('checked', false);
-      }
-
-    });
-    // event.preventDefault();
-    jQuery(document).off('click', '#edit_user_level_btn');
-    jQuery(document).on('click', '#edit_user_level_btn', function(e) {
-      var selectedID = $(this).data('id');
-      var target = document.querySelector("#userLevelModalContent");
-      var blockUI = new KTBlockUI(target, {
-          message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
-      });
-      blockUI.block();
-      $.ajax({
-        url: "/userLevel/get/"+selectedID,
-        type: "GET",
-        contentType: false,
-        cache: false,
-        processData:false,
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        success: function (data){
-          blockUI.release();
-          blockUI.destroy();
-          var obj = JSON.parse(data);
-          if(obj){
-            $('#edit_user_level_form [name="id"]').val(obj.id);
-            $('#edit_user_level_form [name="name"]').val(obj.name);
-
-            $('#edit_user_level_form [name="n1_crm"]').prop('checked', obj.n1_crm == 1).trigger('change');
-              $('#edit_user_level_form [name="n2_dashboard"]').prop('checked', obj.n2_dashboard == 1).trigger('change');
-            $('#edit_user_level_form [name="n1_tools"]').prop('checked', obj.n1_tools == 1).trigger('change');
-              $('#edit_user_level_form [name="n2_users"]').prop('checked', obj.n2_users == 1);
-              $('#edit_user_level_form [name="n2_user_roles"]').prop('checked', obj.n2_user_roles == 1);
-              $('#edit_user_level_form [name="n2_forms"]').prop('checked', obj.n2_forms == 1);
-              $('#edit_user_level_form [name="n2_crm_logs"]').prop('checked', obj.n2_crm_logs == 1);
-          } 
+    jQuery(document).off("change", '#edit_user_level_form [type="checkbox"]');
+    jQuery(document).on(
+        "change",
+        '#edit_user_level_form [type="checkbox"]',
+        function (e) {
+            console.log($(this).is(":checkbox"));
+            var thisname = $(this).attr("name");
+            if ($(this).is(":checked")) {
+                $("#edit_user_level_form ." + thisname)
+                    .slideDown(250)
+                    .prop("checked", true);
+            } else {
+                $("#edit_user_level_form ." + thisname)
+                    .slideUp(250)
+                    .prop("checked", false);
+            }
         }
-      });
+    );
+    // event.preventDefault();
+    jQuery(document).off("click", "#edit_user_level_btn");
+    jQuery(document).on("click", "#edit_user_level_btn", function (e) {
+        $(".error-box").hide();
+        var selectedID = $(this).data("id");
+        var target = document.querySelector("#userLevelModalContent");
+        var blockUI = new KTBlockUI(target, {
+            message:
+                '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
+        });
+        blockUI.block();
+        $.ajax({
+            url: "/userLevel/get/" + selectedID,
+            type: "GET",
+            contentType: false,
+            cache: false,
+            processData: false,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (data) {
+                blockUI.release();
+                blockUI.destroy();
+                var obj = JSON.parse(data);
+                if (obj) {
+                    $('#edit_user_level_form [name="id"]').val(obj.id);
+                    $('#edit_user_level_form [name="name"]').val(obj.name);
+
+                    $('#edit_user_level_form [name="n1_crm"]')
+                        .prop("checked", obj.n1_crm == 1)
+                        .trigger("change");
+                    $('#edit_user_level_form [name="n2_dashboard"]')
+                        .prop("checked", obj.n2_dashboard == 1)
+                        .trigger("change");
+                    $('#edit_user_level_form [name="n1_tools"]')
+                        .prop("checked", obj.n1_tools == 1)
+                        .trigger("change");
+                    $('#edit_user_level_form [name="n2_users"]').prop(
+                        "checked",
+                        obj.n2_users == 1
+                    );
+                    $('#edit_user_level_form [name="n2_user_roles"]').prop(
+                        "checked",
+                        obj.n2_user_roles == 1
+                    );
+                    $('#edit_user_level_form [name="n2_forms"]').prop(
+                        "checked",
+                        obj.n2_forms == 1
+                    );
+                    $('#edit_user_level_form [name="n2_crm_logs"]').prop(
+                        "checked",
+                        obj.n2_crm_logs == 1
+                    );
+                }
+            },
+        });
     });
 });

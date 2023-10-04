@@ -160,6 +160,7 @@ jQuery(document).ready(function () {
     // event.preventDefault();
     jQuery(document).off("click", "#edit_location_btn");
     jQuery(document).on("click", "#edit_location_btn", function (e) {
+        $(".error-box").hide();
         var selectedID = $(this).data("id");
         var target = document.querySelector("#locationModalContent");
         var blockUI = new KTBlockUI(target, {

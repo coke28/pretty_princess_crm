@@ -127,9 +127,9 @@ var editUserValidation = (function () {
             // Simulate form submission. For more info check the plugin's official documentation: https://sweetalert2.github.io/
             var formx = $("#edit_user_form")[0]; // You need to use standart javascript object here
             var formDatax = new FormData(formx);
-            var selectedID = formDatax.get('id');
+            var selectedID = formDatax.get("id");
             $.ajax({
-                url: "/user/edit/"+selectedID,
+                url: "/user/edit/" + selectedID,
                 type: "POST",
                 data: formDatax,
                 contentType: false,
@@ -224,35 +224,43 @@ jQuery(document).ready(function () {
     //DONT FOGET THIS!!!
     editUserValidation.init();
 
-    jQuery(document).off('click', '#edit_user_btn');
-    jQuery(document).on('click', '#edit_user_btn', function(e) {
-      var selectedID = $(this).data('id');
-      var target = document.querySelector("#userModalContent");
-      var blockUI = new KTBlockUI(target, {
-          message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
-      });
-      blockUI.block();
-      $.ajax({
-        url: "/user/get/"+selectedID,
-        type: "GET",
-        contentType: false,
-        cache: false,
-        processData:false,
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        success: function (data){
-          blockUI.release();
-          blockUI.destroy();
-          var obj = JSON.parse(data);
-          if(obj){
-            $('#edit_user_form [name="id"]').val(obj.id);
-            $('#edit_user_form [name="first_name"]').val(obj.first_name);
-            $('#edit_user_form [name="last_name"]').val(obj.last_name);
-            $('#edit_user_form [name="user_level_id"]').val(obj.user_level_id);
-            $('#edit_user_form [name="email"]').val(obj.email);
-            $('#edit_user_form [name="status"]').val(obj.status);
-            // $('#edit_user_form .userImagePreview').html(`<img class="img-fluid" src="`+"/"+obj.avatar+`">`);
-          } 
-        }
-      });
+    jQuery(document).off("click", "#edit_user_btn");
+    jQuery(document).on("click", "#edit_user_btn", function (e) {
+        $(".error-box").hide();
+        var selectedID = $(this).data("id");
+        var target = document.querySelector("#userModalContent");
+        var blockUI = new KTBlockUI(target, {
+            message:
+                '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
+        });
+        blockUI.block();
+        $.ajax({
+            url: "/user/get/" + selectedID,
+            type: "GET",
+            contentType: false,
+            cache: false,
+            processData: false,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function (data) {
+                blockUI.release();
+                blockUI.destroy();
+                var obj = JSON.parse(data);
+                if (obj) {
+                    $('#edit_user_form [name="id"]').val(obj.id);
+                    $('#edit_user_form [name="first_name"]').val(
+                        obj.first_name
+                    );
+                    $('#edit_user_form [name="last_name"]').val(obj.last_name);
+                    $('#edit_user_form [name="user_level_id"]').val(
+                        obj.user_level_id
+                    );
+                    $('#edit_user_form [name="email"]').val(obj.email);
+                    $('#edit_user_form [name="status"]').val(obj.status);
+                    // $('#edit_user_form .userImagePreview').html(`<img class="img-fluid" src="`+"/"+obj.avatar+`">`);
+                }
+            },
+        });
     });
 });

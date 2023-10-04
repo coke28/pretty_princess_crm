@@ -13,7 +13,7 @@ var KTDatatablesServerSide = (function () {
 
     // Private functions
     var initDatatable = function () {
-        var formTableRoute = $("#category_dt").data("table-route");
+        var categoryTableRoute = $("#category_dt").data("table-route");
         dt = $("#category_dt").DataTable({
             searchDelay: 500,
             processing: true,
@@ -31,7 +31,7 @@ var KTDatatablesServerSide = (function () {
             },
             ajax: {
                 //   url: "/admin/userTB",
-                url: formTableRoute,
+                url: categoryTableRoute,
                 type: "POST",
                 beforeSend: function (request) {
                     request.setRequestHeader(
