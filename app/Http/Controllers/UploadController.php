@@ -32,12 +32,13 @@ class UploadController extends Controller
         try {
             $file = $request->file('file');
 
-            $import = new LeadImport($request->campaign_name, $request->location, $request->category);
+            $import = new LeadImport($request->campaign_name, $request->location, $request->category,$request->group);
             // $import->import($file);
             Excel::import($import, $file);
+            $uploadedLeadCount = $import->rowCount;
             
             
-            $this->campaignUploadLogService->addCampaignUploadLog($request->campaign_name, auth()->user()->id,$import->rowCount);
+            $this->campaignUploadLogService->addCampaignUploadLog($request->campaign_name, auth()->user()->id,$uploadedLeadCount,$request->group);
 
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             return response()->json(['error' => $e->failures()], 422);
@@ -45,7 +46,7 @@ class UploadController extends Controller
        
         return json_encode(array(
             'success' => true,
-            'message' => "Uploaded succesfully!"
+            'message' => $uploadedLeadCount ." leads Uploaded succesfully!"
         ));
     }
 }

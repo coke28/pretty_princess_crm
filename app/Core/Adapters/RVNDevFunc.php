@@ -51,6 +51,7 @@ class RVNDevFunc
           'userLevel.index',
           'category.index',
           'location.index',
+          'group.index',
           'form.index',
           'crmLog.index',
         ];

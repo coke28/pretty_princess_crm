@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Group;
 use App\Models\Location;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -150,6 +151,24 @@ class PageController extends Controller
     ));
   }
 
+  public function manageGroup()
+  {
+    // $hasAccess = $this->permissionCheck(auth()->user()->userlevel->n2_forms);
+    // if (!$hasAccess) {
+    //   if (Auth::check()) {
+    //     // The user is logged in...
+    //     return redirect()->route('user.dash');
+    //   } else {
+    //     return redirect()->route('get.login');
+    //   }
+    // }
+    return view('tools.manageGroups.view', array(
+      'pageTitle' => 'Manage Group',
+      'pageDescription' => '',
+    ));
+  }
+
+
 
 
   public function manageForm()
@@ -183,6 +202,7 @@ class PageController extends Controller
     return view('pages.uploadFile.view', array(
       'pageTitle' => 'Upload File',
       'pageDescription' => '',
+      'groups' => Group::where('status','1')->where('deleted','0')->get(),
       'categories' => Category::where('status','1')->where('deleted','0')->get(),
       'locations' => Location::where('status','1')->where('deleted','0')->get(),
     ));

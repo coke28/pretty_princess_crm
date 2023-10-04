@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CampaignUploadLogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CrmLogController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\UploadController;
@@ -117,6 +118,16 @@ Route::middleware('auth')->group(function () {
     Route::get('get/{location}', [LocationController::class, 'locationGet'])->name('location.get');
     Route::post('edit/{location}', [LocationController::class, 'locationEdit'])->name('location.edit');
     Route::post('delete/{location}', [LocationController::class, 'locationDelete'])->name('location.delete');
+  });
+
+    Route::group(['prefix' => 'group'], function () {
+    //Form Routes
+    Route::get('/', [PageController::class, 'manageGroup'])->name('group.index');
+    Route::post('table', [GroupController::class, 'groupTB'])->name('group.table');
+    Route::post('add', [GroupController::class, 'groupAdd'])->name('group.add');
+    Route::get('get/{group}', [GroupController::class, 'groupGet'])->name('group.get');
+    Route::post('edit/{group}', [GroupController::class, 'groupEdit'])->name('group.edit');
+    Route::post('delete/{group}', [GroupController::class, 'groupDelete'])->name('group.delete');
   });
 
   Route::group(['prefix' => 'crmLog'], function () {

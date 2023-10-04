@@ -231,6 +231,7 @@ var KTDatatablesServerSide = (function () {
             columns: [
                 { data: "id" },
                 { data: "campaign_name" },
+                { data: "group_name" },
                 { data: "campaign_uploader" },
                 { data: "rows_uploaded" },
                 { data: "created_at" },

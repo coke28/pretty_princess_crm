@@ -141,17 +141,18 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="col-lg-6">
+                            <div class="col-lg-6">
                                 <label for="campaignGrouping" class="col-form-label fw-bold fs-6">Campaign
-                                    Grouping</label>
-                                <div class="col-lg-12 fv-row" id="campaign_group">
-                                    <select class="form-select form-select-sm form-select-solid" name="campaign_group">
-                                        @foreach ($groups as $category )
-                                        <option value="{{ $category->groupName }}">{{ $category->groupName}}</option>
+                                    Group</label>
+                                <div class="col-lg-12 fv-row" id="group">
+                                    <select class="form-select" data-control="select2" data-placeholder="Select an option" name="group">
+                                        <option value=""></option>
+                                        @foreach ($groups as $group )
+                                        <option value="{{ $group->id }}">{{ $group->group_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
 
                         <div class="row mb-12">
@@ -238,6 +239,7 @@
                             <tr class="fw-semibold fs-6 text-black-800 border-bottom border-gray-200">
                                 <th>ID</th>
                                 <th>Campaign Name</th>
+                                <th>Campaign Group</th>
                                 <th>Campaign_uploader</th>
                                 <th># of Leads Uploaded</th>
                                 <th>Upload Date</th>

@@ -21,6 +21,7 @@ class LeadImport implements ToModel, WithValidation, WithHeadingRow, ShouldAutoS
     private $campaign_name;
     private $location_id;
     private $category_id;
+    private $group_id;
     public $rowCount = 0;
 
     public function onRow(Row $row)
@@ -28,11 +29,12 @@ class LeadImport implements ToModel, WithValidation, WithHeadingRow, ShouldAutoS
         $this->rowCount++;
     }
 
-    public function __construct($campaign_name, $location_id, $category_id)
+    public function __construct($campaign_name, $location_id, $category_id,$group_id)
     {
         $this->campaign_name = $campaign_name;
         $this->location_id = $location_id;
         $this->category_id = $category_id;
+        $this->group_id = $group_id;
     }
 
     public function model(array $row)
@@ -45,7 +47,7 @@ class LeadImport implements ToModel, WithValidation, WithHeadingRow, ShouldAutoS
             'contact_information'    => $row['contact_information'],
             'category_id'    =>  $this->category_id,
             'location_id'    =>  $this->location_id,
-            'group_id'    => '0',
+            'group_id'    => $this->group_id,
             'website'    => $row['website'],
             'facebook'    => $row['facebook'],
             'instagram'    => $row['instagram'],
