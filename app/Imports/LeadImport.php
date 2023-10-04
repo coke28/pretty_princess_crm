@@ -6,19 +6,27 @@ use App\Models\Lead;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
+use Maatwebsite\Excel\Row;
 
-class LeadImport implements ToModel, WithValidation, WithHeadingRow, ShouldAutoSize
+class LeadImport implements ToModel, WithValidation, WithHeadingRow, ShouldAutoSize,OnEachRow
 {
     use Importable;
 
     private $campaign_name;
     private $location_id;
     private $category_id;
+    public $rowCount = 0;
+
+    public function onRow(Row $row)
+    {
+        $this->rowCount++;
+    }
 
     public function __construct($campaign_name, $location_id, $category_id)
     {
@@ -43,6 +51,8 @@ class LeadImport implements ToModel, WithValidation, WithHeadingRow, ShouldAutoS
             'instagram'    => $row['instagram'],
         ]);
     }
+
+
     public function rules(): array
     {
         return [

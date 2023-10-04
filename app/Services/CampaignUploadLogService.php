@@ -20,6 +20,7 @@ class CampaignUploadLogService
             'campaign_upload_logs.id',
             'campaign_upload_logs.campaign_name',
             'campaign_uploader',
+            'campaign_upload_logs.rows_uploaded',
             'campaign_upload_logs.upload_date',
         );
 
@@ -53,6 +54,7 @@ class CampaignUploadLogService
             campaign_upload_logs.id,
             campaign_upload_logs.campaign_name,
             CONCAT(users.first_name, " ", users.last_name) as campaign_uploader,
+            campaign_upload_logs.rows_uploaded,
             campaign_upload_logs.created_at
         ')
         ->where('campaign_upload_logs.deleted','0');
@@ -80,12 +82,13 @@ class CampaignUploadLogService
         return $result;
     }
 
-    public function addCampaignUploadLog($campaign_name,$user_id)
+    public function addCampaignUploadLog($campaign_name,$user_id,$rows_uploaded)
     {
 
         $campaign_upload_log = new CampaignUploadLog();
         $campaign_upload_log->campaign_name = $campaign_name;
         $campaign_upload_log->campaign_uploader = $user_id;
+        $campaign_upload_log->rows_uploaded = $rows_uploaded;
         $campaign_upload_log->save();
     }
 

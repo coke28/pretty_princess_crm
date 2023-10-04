@@ -81,7 +81,7 @@
                                 </span></span>
                             <span class="d-flex flex-column align-items-start ms-2">
                                 <span class="fs-4 fw-bold">Campaign Upload Log</span>
-                                <span class="fs-7">View campaign upload log</span>
+                                <span class="fs-7">View Campaign Upload Log</span>
                             </span>
                         </a>
                     </li>
@@ -105,8 +105,8 @@
                                     <!--end::Svg Icon-->
                                 </span></span>
                             <span class="d-flex flex-column align-items-start ms-2">
-                                <span class="fs-4 fw-bold">Upload progress</span>
-                                <span class="fs-7">View Progress of uploaded files</span>
+                                <span class="fs-4 fw-bold">Sample File Format</span>
+                                <span class="fs-7">View Format of Import File</span>
                             </span>
                         </a>
                     </li>
@@ -239,7 +239,7 @@
                                 <th>ID</th>
                                 <th>Campaign Name</th>
                                 <th>Campaign_uploader</th>
-                                {{-- <th># of Leads Uploaded</th> --}}
+                                <th># of Leads Uploaded</th>
                                 <th>Upload Date</th>
                                 <th>Tools</th>
                             </tr>
@@ -254,6 +254,45 @@
         <div class="tab-pane fade" id="kt_tab_pane_6" role="tabpanel">
             <div class="card card-custom mt-4">
                 <div class="card-body">
+                    <table id=""
+                    class="table table-rounded table-striped border gy-7 gs-7">
+                    <thead>
+                        <tr class="fw-semibold fs-6 text-black-800 border-bottom border-gray-200">
+                         
+                            <th>Company Name</th>
+                            <th>Address</th>
+                            <th>Email</th>
+                            <th>Contact Info</th>
+                            <th>Website</th>
+                            <th>Instagram</th>
+                            <th>Facebook</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-black-600 fw-bold">
+                        <tr class="fw-semibold fs-6 text-black-800 border-bottom border-gray-200">
+                            <th>required and a string</th>
+                            <th>required and a string</th>
+                            <th>required and is a valid email address</th>
+                            <th>required and is a contact number</th>
+                            <th>required and a string</th>
+                            <th>required and a string</th>
+                            <th>required and a string</th>
+                        </tr>
+                        <tr class="fw-semibold fs-6 text-black-800 border-bottom border-gray-200">
+                            <th>My Salon Suite
+                            </th>
+                            <th>2833 Bartlett Blvd Bartlett Tennessee 38134
+                            </th>
+                            <th>info.bartlett@mysalonsuite.com
+                            </th>
+                            <th>901-463-8284
+                            </th>
+                            <th>https://www.mysalonsuite.com/</th>
+                            <th>https://www.facebook.com/mysalonsuitebartlett/</th>
+                            <th>https://www.instagram.com/mysalonsuite_bartlett/</th>
+                        </tr>
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>

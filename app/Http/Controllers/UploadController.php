@@ -8,6 +8,7 @@ use App\Rules\UniqueExceptCurrent;
 use App\Services\CampaignUploadLogService;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UploadController extends Controller
 {
@@ -30,12 +31,18 @@ class UploadController extends Controller
         }
         try {
             $file = $request->file('file');
+
             $import = new LeadImport($request->campaign_name, $request->location, $request->category);
-            $import->import($file);
+            // $import->import($file);
+            Excel::import($import, $file);
+            
+            
+            $this->campaignUploadLogService->addCampaignUploadLog($request->campaign_name, auth()->user()->id,$import->rowCount);
+
         } catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             return response()->json(['error' => $e->failures()], 422);
         }
-        $this->campaignUploadLogService->addCampaignUploadLog($request->campaign_name, auth()->user()->id);
+       
         return json_encode(array(
             'success' => true,
             'message' => "Uploaded succesfully!"

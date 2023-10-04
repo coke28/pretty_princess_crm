@@ -232,13 +232,13 @@ var KTDatatablesServerSide = (function () {
                 { data: "id" },
                 { data: "campaign_name" },
                 { data: "campaign_uploader" },
-                // { data: "upload_date" },
+                { data: "rows_uploaded" },
                 { data: "created_at" },
                 { data: null },
             ],
             columnDefs: [
                 {
-                    targets: 4,
+                    targets: 5,
                     orderable: false,
                     render: function (data, type, row) {
                         return (
