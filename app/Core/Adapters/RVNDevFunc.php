@@ -67,13 +67,21 @@ class RVNDevFunc
 
     if($navtype == 'pagegroup'){
 
-      // if ($navtitle == 'manageUsers') {
-      //   $included_routes = [
-      //     'user.index',
-      //     'userLevel.index',
-      //     'form.index',
-      //   ];
-      // }
+      if ($navtitle == 'usermgt') {
+        $included_routes = [
+          'user.index',
+          'userLevel.index',
+        ];
+      }
+
+      if ($navtitle == 'filtermgt') {
+        $included_routes = [
+          'category.index',
+          'location.index',
+          'group.index',
+        ];
+      }
+
     
 
 
