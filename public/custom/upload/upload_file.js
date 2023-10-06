@@ -239,7 +239,7 @@ var KTDatatablesServerSide = (function () {
             ],
             columnDefs: [
                 {
-                    targets: 5,
+                    targets: 6,
                     orderable: false,
                     render: function (data, type, row) {
                         return (
