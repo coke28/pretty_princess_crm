@@ -35,7 +35,7 @@ class LeadRequest extends FormRequest
             'email_sent' => 'required|in:0,1',
             'category_id ' => 'required|integer',
             'location_id ' => 'required|integer',
-            // 'group_id  ' => 'required|integer',
+            'group_id  ' => 'present|integer',
             //
         ];
     }

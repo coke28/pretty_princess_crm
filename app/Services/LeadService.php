@@ -127,9 +127,9 @@ class LeadService
         $lead->facebook = $validatedData['facebook'];
         $lead->instagram = $validatedData['instagram'];
         $lead->email_sent = $validatedData['email_sent'];
-        $lead->category_id  = $validatedData['category_id '];
-        $lead->location_id  = $validatedData['location_id '];
-        // $lead->group_id  = $validatedData['group_id '];
+        $lead->category_id  = $validatedData['category_id'];
+        $lead->location_id  = $validatedData['location_id'];
+        $lead->group_id  = $validatedData['group_id'];
         $lead->save();
 
         $this->crmLogService->addCrmLog($lead, "Manage Leads", "leadEdit");
