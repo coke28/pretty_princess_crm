@@ -51,7 +51,7 @@ class CampaignUploadLogService
 
         $campaign_upload_logs = DB::table('campaign_upload_logs')
         ->join('users', 'users.id', '=', 'campaign_upload_logs.campaign_uploader')
-        ->join('groups', 'groups.id', '=', 'campaign_upload_logs.group_id')
+        ->leftjoin('groups', 'groups.id', '=', 'campaign_upload_logs.group_id')
         ->selectRaw('
             campaign_upload_logs.id,
             campaign_upload_logs.campaign_name,

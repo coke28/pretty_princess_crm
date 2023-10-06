@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CampaignUploadLog;
 use App\Models\Category;
 use App\Models\Group;
 use App\Models\Location;
@@ -95,6 +96,10 @@ class PageController extends Controller
     return view('pages.leads.view', array(
       'pageTitle' => 'Manage Leads',
       'pageDescription' => '',
+      'campaign_names' => CampaignUploadLog::where('deleted','0')->get(),
+      'locations' => Location::where('status','1')->where('deleted','0')->get(),
+      'categories' => Category::where('status','1')->where('deleted','0')->get(),
+      'groups' => Group::where('status','1')->where('deleted','0')->get(),
     ));
   }
 

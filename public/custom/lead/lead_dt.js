@@ -1,12 +1,13 @@
 "use strict";
 
 var currentRoleFilter = 0;
+var dt;
 
 // Class definition
 var KTDatatablesServerSide = (function () {
     // Shared variables
     var table;
-    var dt;
+    
     var filterPayment;
 
     // alert("in ajax");
@@ -39,9 +40,15 @@ var KTDatatablesServerSide = (function () {
                         $('meta[name="csrf-token"]').attr("content")
                     );
                 },
-                // data: function(d) {
-                //   d.roleFilter = currentRoleFilter
-                // }
+                data: function(d) {
+
+                  d.campaign_name_filter = $("#campaign_name_filter").val(),
+                  d.campaign_group_filter = $("#campaign_group_filter").val(),
+                  d.location_filter = $("#location_filter").val(),
+                  d.category_filter = $("#category_filter").val(),
+                  d.email_sent_filter = $("#email_sent_filter").val()
+                }
+
             },
             language: {
                 lengthMenu: " _MENU_",
@@ -149,5 +156,11 @@ KTUtil.onDOMContentLoaded(function () {
     jQuery(document).on("click", ".clearInp", function (e) {
         e.preventDefault();
         $(this).closest(".input-group").find("input").val("").trigger("change");
+    });
+
+    jQuery(document).off("click", "#lead_filter_btn");
+    jQuery(document).on("click", "#lead_filter_btn", function (e) {
+        console.log("click");
+        dt.ajax.reload();      
     });
 });

@@ -4,13 +4,15 @@
     <div class="card-body">
       <div class="row mb-12">
         <div class="col-lg-6">
-          <label for="campaign_name" class="col-form-label fw-bold fs-6">Campaign
+          <label for="campaign_name_filter" class="col-form-label fw-bold fs-6">Campaign
             Name</label>
-          <div class="col-lg-12 fv-row" id="campaign_name">
-            <select class="form-select" data-control="select2" data-placeholder="Select an option" name="location">
-              {{-- @foreach ($locations as $location )
-              <option value="{{ $location->id }}">{{ $location->location_name}}</option>
-              @endforeach --}}
+          <div class="col-lg-12 fv-row">
+            <select class="form-select" data-control="select2"
+              name="campaign_name_filter" id="campaign_name_filter">
+              <option value="">Select Campaign Name</option>
+              @foreach ($campaign_names as $campaign_name )
+              <option value="{{ $campaign_name->campaign_name }}">{{ $campaign_name->campaign_name}}</option>
+              @endforeach
             </select>
           </div>
         </div>
@@ -18,11 +20,13 @@
         <div class="col-lg-6">
           <label for="campaign_group" class="col-form-label fw-bold fs-6">Campaign
             Grouping</label>
-          <div class="col-lg-12 fv-row" id="campaign_group">
-            <select class="form-select" data-control="select2" data-placeholder="Select an option" name="campaign_group">
-              {{-- @foreach ($groups as $category )
-              <option value="{{ $category->groupName }}">{{ $category->groupName}}</option>
-              @endforeach --}}
+          <div class="col-lg-12 fv-row">
+            <select class="form-select" data-control="select2"
+              name="campaign_group_filter_filter" id="campaign_group_filter">
+              <option value="0">Select Campaign Group Filter</option>
+              @foreach ($groups as $group )
+              <option value="{{ $group->id }}">{{ $group->group_name}}</option>
+              @endforeach
             </select>
           </div>
         </div>
@@ -32,11 +36,13 @@
         <div class="col-lg-6">
           <label for="location" class="col-form-label fw-bold fs-6">Location
           </label>
-          <div class="col-lg-12 fv-row" id="location">
-            <select class="form-select" data-control="select2" data-placeholder="Select an option" name="location">
-              {{-- @foreach ($locations as $location )
+          <div class="col-lg-12 fv-row">
+            <select class="form-select" data-control="select2"
+              name="location_filter" id="location_filter">
+              <option value="">Select Location Filter</option>
+              @foreach ($locations as $location )
               <option value="{{ $location->id }}">{{ $location->location_name}}</option>
-              @endforeach --}}
+              @endforeach
             </select>
           </div>
         </div>
@@ -44,11 +50,13 @@
         <div class="col-lg-6">
           <label for="category" class="col-form-label fw-bold fs-6">Category
           </label>
-          <div class="col-lg-12 fv-row" id="category">
-            <select class="form-select" data-control="select2" data-placeholder="Select an option" name="category">
-              {{-- @foreach ($categories as $category )
+          <div class="col-lg-12 fv-row">
+            <select class="form-select" data-control="select2"
+              name="category_filter" id="category_filter">
+              <option value="">Select Category Filter</option>
+              @foreach ($categories as $category )
               <option value="{{ $category->id }}">{{ $category->category_name}}</option>
-              @endforeach --}}
+              @endforeach
             </select>
           </div>
         </div>
@@ -56,9 +64,10 @@
         <div class="col-lg-6">
           <label for="email_sent" class="col-form-label fw-bold fs-6">Email Sent
           </label>
-          <div class="col-lg-12 fv-row" id="email_sent">
-            <select class="form-select" data-control="select2" data-placeholder="Select an option" name="email_sent">
-              <option value=""></option>
+          <div class="col-lg-12 fv-row">
+            <select class="form-select" data-control="select2"
+              name="email_sent_filter" id="email_sent_filter">
+              <option value="">Select Email Sent Filter</option>
               <option value="0">No</option>
               <option value="1">Yes</option>
             </select>
@@ -67,9 +76,9 @@
 
       </div>
       <div class="modal-footer">
-        <button id="filterBtn" class="btn btn-primary font-weight-bold">
-            Filter Table</button>
-    </div>
+        <button id="lead_filter_btn" class="btn btn-primary font-weight-bold">
+          Filter Table</button>
+      </div>
     </div>
   </div>
 

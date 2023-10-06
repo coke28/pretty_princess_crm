@@ -146,7 +146,7 @@
                                     Group</label>
                                 <div class="col-lg-12 fv-row" id="group">
                                     <select class="form-select" data-control="select2" data-placeholder="Select an option" name="group">
-                                        <option value=""></option>
+                                        <option value="0">Select Campaign Group</option>
                                         @foreach ($groups as $group )
                                         <option value="{{ $group->id }}">{{ $group->group_name}}</option>
                                         @endforeach

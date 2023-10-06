@@ -22,6 +22,8 @@ class LeadService
         header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
         header('Access-Control-Allow-Headers: *');
 
+
+
         $tableColumns = array(
             'id',
             'campaign_name',
@@ -58,18 +60,24 @@ class LeadService
             $sortOrder = $request->order[0]['dir'];
         }
 
-        $leads = DB::table('leads')->selectRaw('
-                id,
-                campaign_name,
-                company_name,
-                address,
-                email_address,
-                contact_information,
-                website,
-                facebook,
-                instagram
-            ')
+        $leads = DB::table('leads')
             ->where('deleted', '0');
+
+        if (!empty($request->campaign_name_filter)) {
+            $leads = $leads->where('campaign_name', $request->campaign_name_filter);
+        }
+        if (!empty($request->campaign_group_filter)) {
+            $leads = $leads->where('group_id', $request->campaign_group_filter);
+        }
+        if (!empty($request->location_filter)) {
+            $leads = $leads->where('location_id', $request->location_filter);
+        }
+        if (!empty($request->category_filter)) {
+            $leads = $leads->where('category_id', $request->category_filter);
+        }
+        if (!empty($request->email_sent_filter)) {
+            $leads = $leads->where('email_sent', $request->email_sent_filter);
+        }
 
         $leads = $leads->where(function ($query) use ($search) {
             return $query->where('id', 'like', '%' . $search . '%')
