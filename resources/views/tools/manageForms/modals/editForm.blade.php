@@ -52,7 +52,7 @@
                     <div class="row mb-6">
                         <label class="col-lg-2 col-form-label fw-bold fs-6">Status</label>
                         <div class="col-lg-10 fv-row">
-                            <select class="form-select" data-control="select2" data-placeholder="Select an option" name="status" id="status">
+                            <select class="form-select" data-placeholder="Select an option" name="status" id="status">
                                 <option value="1">Active</option>
                                 <option value="0">Inactive</option>
                             </select>

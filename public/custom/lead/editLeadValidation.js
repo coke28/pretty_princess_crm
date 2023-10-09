@@ -203,7 +203,7 @@ var editLeadValidation = (function () {
     };
 })();
 
-jQuery(document).ready(function () {
+jQuery(document).ready(function () {    
     //DONT FOGET THIS!!!
     editLeadValidation.init();
     // event.preventDefault();

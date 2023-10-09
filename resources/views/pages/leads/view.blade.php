@@ -7,7 +7,7 @@
           <label for="campaign_name_filter" class="col-form-label fw-bold fs-6">Campaign
             Name</label>
           <div class="col-lg-12 fv-row">
-            <select class="form-select" data-control="select2" name="campaign_name_filter" id="campaign_name_filter">
+            <select class="form-select" name="campaign_name_filter" id="campaign_name_filter">
               <option value="">Select Campaign Name Filter</option>
               @foreach ($campaign_names as $campaign_name )
               <option value="{{ $campaign_name->campaign_name }}">{{ $campaign_name->campaign_name}}</option>
@@ -20,7 +20,7 @@
           <label for="campaign_group" class="col-form-label fw-bold fs-6">Campaign
             Grouping</label>
           <div class="col-lg-12 fv-row">
-            <select class="form-select" data-control="select2" name="campaign_group_filter_filter"
+            <select class="form-select" name="campaign_group_filter_filter"
               id="campaign_group_filter">
               <option value="0">Select Campaign Group Filter</option>
               @foreach ($groups as $group )
@@ -36,7 +36,7 @@
           <label for="location" class="col-form-label fw-bold fs-6">Location
           </label>
           <div class="col-lg-12 fv-row">
-            <select class="form-select" data-control="select2" name="location_filter" id="location_filter">
+            <select class="form-select" name="location_filter" id="location_filter">
               <option value="">Select Location Filter</option>
               @foreach ($locations as $location )
               <option value="{{ $location->id }}">{{ $location->location_name}}</option>
@@ -49,7 +49,7 @@
           <label for="category" class="col-form-label fw-bold fs-6">Category
           </label>
           <div class="col-lg-12 fv-row">
-            <select class="form-select" data-control="select2" name="category_filter" id="category_filter">
+            <select class="form-select" name="category_filter" id="category_filter">
               <option value="">Select Category Filter</option>
               @foreach ($categories as $category )
               <option value="{{ $category->id }}">{{ $category->category_name}}</option>
@@ -63,7 +63,7 @@
           <label for="email_sent" class="col-form-label fw-bold fs-6">Email Sent
           </label>
           <div class="col-lg-12 fv-row">
-            <select class="form-select" data-control="select2" name="email_sent_filter" id="email_sent_filter">
+            <select class="form-select" name="email_sent_filter" id="email_sent_filter">
               <option value="">Select Email Sent Filter</option>
               <option value="0">No</option>
               <option value="1">Yes</option>
@@ -76,7 +76,7 @@
           <label for="email_sent" class="col-form-label fw-bold fs-6">Email Template
           </label>
           <div class="col-lg-12 fv-row">
-            <select class="form-select" data-control="select2" name="email_template" id="email_template">
+            <select class="form-select" name="email_template" id="email_template">
               <option value="">Select Email Template to Send Emails with</option>
               {{-- <option value="0">No</option>
               <option value="1">Yes</option> --}}

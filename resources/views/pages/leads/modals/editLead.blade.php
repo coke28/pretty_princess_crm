@@ -103,7 +103,7 @@
                         <label class="col-lg-2 col-form-label fw-bold fs-6">Email Sent?<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-10 fv-row">
-                            <select class="form-select" data-control="select2" name="status" id="status">
+                            <select class="form-select" name="email_sent" id="email_sent">
                                 <option value="1">Active</option>
                                 <option value="0">Inactive</option>
                             </select>
@@ -117,7 +117,7 @@
                         <label class="col-lg-2 col-form-label fw-bold fs-6">Location<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-10 fv-row">
-                            <select class="form-select" data-control="select2" name="location_id" id="location_id">
+                            <select class="form-select" name="location_id" id="location_id">
                                 @foreach ($locations as $location )
                                 <option value="{{ $location->id }}">{{ $location->location_name}}</option>
                                 @endforeach
@@ -128,7 +128,7 @@
                         <label class="col-lg-2 col-form-label fw-bold fs-6">Category<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-10 fv-row">
-                            <select class="form-select" data-control="select2" name="category_id" id="category_id">
+                            <select class="form-select" name="category_id" id="category_id">
                                 @foreach ($categories as $category )
                                 <option value="{{ $category->id }}">{{ $category->category_name}}</option>
                                 @endforeach
@@ -140,7 +140,7 @@
                     <div class="row mb-6">
                         <label class="col-lg-2 col-form-label fw-bold fs-6">Group</label>
                         <div class="col-lg-10 fv-row">
-                            <select class="form-select" data-control="select2" name="group_id" id="group_id">
+                            <select class="form-select" name="group_id" id="group_id">
                                 @foreach ($groups as $group )
                                 <option value="{{ $group->id }}">{{ $group->group_name}}</option>
                                 @endforeach
