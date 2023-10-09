@@ -124,6 +124,7 @@ class LeadService
         $lead->address = $validatedData['address'];
         $lead->email_address = $validatedData['email_address'];
         $lead->contact_information = $validatedData['contact_information'];
+        $lead->website = $validatedData['website'];
         $lead->facebook = $validatedData['facebook'];
         $lead->instagram = $validatedData['instagram'];
         $lead->email_sent = $validatedData['email_sent'];

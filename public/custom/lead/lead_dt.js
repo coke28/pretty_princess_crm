@@ -190,20 +190,20 @@ KTUtil.onDOMContentLoaded(function () {
             return; // Exit the function
         }
         var email_template_value = $("#email_template").val();
-        if (email_template_value === null || email_template_value === undefined || email_template_value === "") {
-            // Handle the case where there are no records
-            Swal.fire({
-                text: "Please Select an Email Template to Use!",
-                icon: "info",
-                buttonsStyling: false,
-                confirmButtonText: "OK",
-                customClass: {
-                    confirmButton: "btn btn-primary",
-                },
-            });
-            changeButtonStatus(false);
-            return; // Exit the function
-        }
+        // if (email_template_value === null || email_template_value === undefined || email_template_value === "") {
+        //     // Handle the case where there are no records
+        //     Swal.fire({
+        //         text: "Please Select an Email Template to Use!",
+        //         icon: "info",
+        //         buttonsStyling: false,
+        //         confirmButtonText: "OK",
+        //         customClass: {
+        //             confirmButton: "btn btn-primary",
+        //         },
+        //     });
+        //     changeButtonStatus(false);
+        //     return; // Exit the function
+        // }
 
 
         Swal.fire({
@@ -223,13 +223,13 @@ KTUtil.onDOMContentLoaded(function () {
             },
         }).then(function (result) {
             if (result.isConfirmed) {
-                  var target = document.querySelector("#lead_dt");
-                  var blockUI = new KTBlockUI(target, {
-                      message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
-                  });
-                  blockUI.block();
+                //   var target = document.querySelector("#lead_dt");
+                //   var blockUI = new KTBlockUI(target, {
+                //       message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
+                //   });
+                //   blockUI.block();
                 $.ajax({
-                    url: "/lead/send/",
+                    url: "/lead/send",
                     type: "POST",
                     contentType: false,
                     cache: false,
@@ -244,13 +244,13 @@ KTUtil.onDOMContentLoaded(function () {
                         ),
                     },
                     data: function (d) {
-                        (d.campaign_name_filter = $("#campaign_name_filter").val()),
-                        (d.campaign_group_filter = $("#campaign_group_filter").val()),
-                        (d.location_filter = $("#location_filter").val()),
-                        (d.category_filter = $("#category_filter").val()),
-                        (d.email_sent_filter =$("#email_sent_filter").val());
-
-                        (d.email_template =$("#email_template").val());
+                        d.campaign_name_filter = $("#campaign_name_filter").val(),
+                        d.campaign_group_filter = $("#campaign_group_filter").val(),
+                        d.location_filter = $("#location_filter").val(),
+                        d.category_filter = $("#category_filter").val(),
+                        d.email_sent_filter =$("#email_sent_filter").val(),
+                        d.email_template =$("#email_template").val();
+                        console.log(d.campaign_name_filter);
 
                     },
                     success: function (data) {
@@ -273,8 +273,8 @@ KTUtil.onDOMContentLoaded(function () {
                         };
                         data = JSON.parse(data);
                         toastr.success(data.message, "Success");
-                         blockUI.release();
-                         blockUI.destroy();
+                        //  blockUI.release();
+                        //  blockUI.destroy();
                         //  $('#lead_dt').DataTable().ajax.reload();
                     },
                     error: function (data) {

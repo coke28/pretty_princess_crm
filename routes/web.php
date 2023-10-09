@@ -86,6 +86,7 @@ Route::middleware('auth')->group(function () {
     Route::get('get/{lead}', [LeadController::class, 'leadGet'])->name('lead.get');
     Route::post('edit/{lead}', [LeadController::class, 'leadEdit'])->name('lead.edit');
     Route::post('delete/{lead}', [LeadController::class, 'leadDelete'])->name('lead.delete');
+    Route::post('send', [LeadController::class, 'leadSend'])->name('lead.send');
   });
 
   Route::group(['prefix' => 'export'], function () {

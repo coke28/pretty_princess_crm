@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LeadRequest;
+use App\Mail\LeadEmail;
 use App\Models\Lead;
 use App\Services\LeadService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class LeadController extends Controller
 {
@@ -24,7 +26,7 @@ class LeadController extends Controller
             $result = $this->leadService->leadTB($request);
         } catch (\Exception $exception) {
             //throw $ex;
-            return response()->json(['error' => $exception->getMessage()],422);
+            return response()->json(['error' => $exception->getMessage()], 422);
         }
         return json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
     }
@@ -55,12 +57,12 @@ class LeadController extends Controller
         //Get validated Data 
         try {
             //code...
-            $this->leadService->leadEdit($request->validated(),$lead);
+            $this->leadService->leadEdit($request->validated(), $lead);
         } catch (\Exception $exception) {
             //throw $ex;
-            return response()->json(['error' => $exception->getMessage()],422);
+            return response()->json(['error' => $exception->getMessage()], 422);
         }
-       
+
         return json_encode(array(
             'success' => true,
             'message' => 'Lead edited successfully.'
@@ -74,11 +76,28 @@ class LeadController extends Controller
             $this->leadService->leadDelete($lead);
         } catch (\Exception $exception) {
             //throw $ex;
-            return response()->json(['error' => $exception->getMessage()],422);
+            return response()->json(['error' => $exception->getMessage()], 422);
         }
         return json_encode(array(
             'success' => true,
             'message' => 'Lead has been deleted.'
         ));
+    }
+    public function leadSend(Request $request)
+    {
+        try {
+            //code...
+            // dd($request);
+            // $result = $this->leadService->leadTB($request);
+            // Mail::to('fake@gmai.com')->send(new LeadEmail());
+        } catch (\Exception $exception) {
+            //throw $ex;
+            return response()->json(['error' => $exception->getMessage()], 422);
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Lead edited successfully.',
+            'data' => $request
+        ], 200);
     }
 }
