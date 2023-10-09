@@ -25,7 +25,7 @@ class LeadRequest extends FormRequest
     {
         return [
             'campaign_name' => 'required|string',
-            'campany_name' => 'required|string',
+            'company_name' => 'required|string',
             'address' => 'required|string',
             'email_address' => 'required|email',
             'contact_information' => 'required|string',
@@ -33,9 +33,9 @@ class LeadRequest extends FormRequest
             'facebook' => 'required|string',
             'instagram' => 'required|string',
             'email_sent' => 'required|in:0,1',
-            'category_id ' => 'required|integer',
-            'location_id ' => 'required|integer',
-            'group_id  ' => 'present|integer',
+            'category_id' => 'required|integer',
+            'location_id' => 'required|integer',
+            'group_id' => 'present|integer',
             //
         ];
     }

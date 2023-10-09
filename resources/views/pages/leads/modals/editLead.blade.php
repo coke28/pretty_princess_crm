@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="row mb-6">
-                        <label class="col-lg-2 col-form-label fw-bold fs-6">Contact Info<span
+                        <label class="col-lg-2 col-form-label fw-bold fs-6">Contact Information<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-10 fv-row">
                             <input type="contact_information" name="contact_information"
@@ -75,7 +75,7 @@
                         <label class="col-lg-2 col-form-label fw-bold fs-6">Website<span
                                 class="text-danger">*</span></label>
                         <div class="col-lg-10 fv-row">
-                            <input type="website" name="website" class="form-control form-control-lg form-control-solid"
+                            <input type="text" name="website" class="form-control form-control-lg form-control-solid"
                                 placeholder="Enter Website">
                         </div>
                     </div>
@@ -151,9 +151,18 @@
                     {{-- Server Validation Errors --}}
                     <div class="error-box" style="display: none;">
                         <div id="" class="error-message">Server Validation Errors</div>
-                        <div id="category_name_error_edit" class="error-message"></div>
-                        <div id="category_description_error_edit" class="error-message"></div>
-                        <div id="status_error_edit" class="error-message"></div>
+                        <div id="campaign_name_error_edit" class="error-message"></div>
+                        <div id="company_name_error_edit" class="error-message"></div>
+                        <div id="address_error_edit" class="error-message"></div>
+                        <div id="email_address_error_edit" class="error-message"></div>
+                        <div id="contact_information_error_edit" class="error-message"></div>
+                        <div id="website_error_edit" class="error-message"></div>
+                        <div id="facebook_error_edit" class="error-message"></div>
+                        <div id="instagram_error_edit" class="error-message"></div>
+                        <div id="email_sent_error_edit" class="error-message"></div>
+                        <div id="location_id_error_edit" class="error-message"></div>
+                        <div id="category_id_error_edit" class="error-message"></div>
+                        <div id="group_id_error_edit" class="error-message"></div>
                     </div>
 
                     <div class="modal-footer">

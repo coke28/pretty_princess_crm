@@ -260,7 +260,6 @@
                     class="table table-rounded table-striped border gy-7 gs-7">
                     <thead>
                         <tr class="fw-semibold fs-6 text-black-800 border-bottom border-gray-200">
-                         
                             <th>Company Name</th>
                             <th>Address</th>
                             <th>Email</th>

@@ -32,6 +32,9 @@ var editLeadValidation = (function () {
                             notEmpty: {
                                 message: "This field is required.",
                             },
+                            emailAddress: {
+                                message: 'The value is not a valid email address.'
+                            }
                         },
                     },
                     website: {

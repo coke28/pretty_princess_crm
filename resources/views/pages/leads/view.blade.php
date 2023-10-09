@@ -1,4 +1,23 @@
 <x-CRM-layout :pageTitle="$pageTitle" :pageDescription="$pageDescription">
+  <style type="text/css">
+    .error-box {
+        border: 1px solid red;
+        /* Add a red border around the error messages */
+        background-color: #fdd;
+        /* Set a background color for the error messages box */
+        padding: 10px;
+        /* Add some padding to create space around the error messages */
+        margin-bottom: 10px;
+        /* Optional: Add some space between the error box and the form fields */
+    }
+
+    .error-message {
+        color: red;
+        /* Set the text color to red */
+        font-size: 14px;
+        /* Optional: Adjust the font size */
+    }
+</style>
 
   <div class="card card-custom mt-4">
     <div class="card-body">
