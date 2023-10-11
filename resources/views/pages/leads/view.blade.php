@@ -1,23 +1,23 @@
 <x-CRM-layout :pageTitle="$pageTitle" :pageDescription="$pageDescription">
   <style type="text/css">
     .error-box {
-        border: 1px solid red;
-        /* Add a red border around the error messages */
-        background-color: #fdd;
-        /* Set a background color for the error messages box */
-        padding: 10px;
-        /* Add some padding to create space around the error messages */
-        margin-bottom: 10px;
-        /* Optional: Add some space between the error box and the form fields */
+      border: 1px solid red;
+      /* Add a red border around the error messages */
+      background-color: #fdd;
+      /* Set a background color for the error messages box */
+      padding: 10px;
+      /* Add some padding to create space around the error messages */
+      margin-bottom: 10px;
+      /* Optional: Add some space between the error box and the form fields */
     }
 
     .error-message {
-        color: red;
-        /* Set the text color to red */
-        font-size: 14px;
-        /* Optional: Adjust the font size */
+      color: red;
+      /* Set the text color to red */
+      font-size: 14px;
+      /* Optional: Adjust the font size */
     }
-</style>
+  </style>
 
   <div class="card card-custom mt-4">
     <div class="card-body">
@@ -39,8 +39,7 @@
           <label for="campaign_group" class="col-form-label fw-bold fs-6">Campaign
             Grouping</label>
           <div class="col-lg-12 fv-row">
-            <select class="form-select" name="campaign_group_filter_filter"
-              id="campaign_group_filter">
+            <select class="form-select" name="campaign_group_filter_filter" id="campaign_group_filter">
               <option value="0">Select Campaign Group Filter</option>
               @foreach ($groups as $group )
               <option value="{{ $group->id }}">{{ $group->group_name}}</option>
@@ -97,8 +96,8 @@
           <div class="col-lg-12 fv-row">
             <select class="form-select" name="email_template" id="email_template">
               <option value="">Select Email Template to Send Emails with</option>
-              @foreach ($email_templates as $email_templates )
-              <option value="{{ $email_templates->id }}">{{ $email_templates->category_name}}</option>
+              @foreach ($email_templates as $email_template )
+              <option value="{{ $email_template->id }}">{{ $email_template->email_template_name}}</option>
               @endforeach
             </select>
           </div>

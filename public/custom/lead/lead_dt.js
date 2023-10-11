@@ -190,20 +190,20 @@ KTUtil.onDOMContentLoaded(function () {
             return; // Exit the function
         }
         var email_template_value = $("#email_template").val();
-        // if (email_template_value === null || email_template_value === undefined || email_template_value === "") {
-        //     // Handle the case where there are no records
-        //     Swal.fire({
-        //         text: "Please Select an Email Template to Use!",
-        //         icon: "info",
-        //         buttonsStyling: false,
-        //         confirmButtonText: "OK",
-        //         customClass: {
-        //             confirmButton: "btn btn-primary",
-        //         },
-        //     });
-        //     changeButtonStatus(false);
-        //     return; // Exit the function
-        // }
+        if (email_template_value === null || email_template_value === undefined || email_template_value === "") {
+            // Handle the case where there are no records
+            Swal.fire({
+                text: "Please Select an Email Template to Use!",
+                icon: "info",
+                buttonsStyling: false,
+                confirmButtonText: "OK",
+                customClass: {
+                    confirmButton: "btn btn-primary",
+                },
+            });
+            changeButtonStatus(false);
+            return; // Exit the function
+        }
 
 
         Swal.fire({
@@ -234,24 +234,18 @@ KTUtil.onDOMContentLoaded(function () {
                     contentType: false,
                     cache: false,
                     processData: false,
-                    search: {
-                        input: $("#leadSearch"),
-                        key: "dtsearch",
-                    },
                     headers: {
                         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                             "content"
                         ),
                     },
-                    data: function (d) {
-                        d.campaign_name_filter = $("#campaign_name_filter").val(),
-                        d.campaign_group_filter = $("#campaign_group_filter").val(),
-                        d.location_filter = $("#location_filter").val(),
-                        d.category_filter = $("#category_filter").val(),
-                        d.email_sent_filter =$("#email_sent_filter").val(),
-                        d.email_template =$("#email_template").val();
-                        console.log(d.campaign_name_filter);
-
+                    data: {
+                        campaign_name_filter : $("#campaign_name_filter").val(),
+                        campaign_group_filter : $("#campaign_group_filter").val(),
+                        location_filter : $("#location_filter").val(),
+                        category_filter : $("#category_filter").val(),
+                        email_sent_filter : $("#email_sent_filter").val(),
+                        email_template : $("#email_template").val(),
                     },
                     success: function (data) {
                         toastr.options = {

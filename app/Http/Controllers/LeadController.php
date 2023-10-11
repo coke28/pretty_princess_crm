@@ -87,8 +87,10 @@ class LeadController extends Controller
     {
         try {
             //code...
-            // dd($request);
-            // $result = $this->leadService->leadTB($request);
+            dd($request->campaign_name_filter);
+            $leads = $this->leadService->leadTB($request);
+
+
             // Mail::to('fake@gmai.com')->send(new LeadEmail());
         } catch (\Exception $exception) {
             //throw $ex;
@@ -97,7 +99,7 @@ class LeadController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Lead edited successfully.',
-            'data' => $request
+            'leads' => $leads
         ], 200);
     }
 }
