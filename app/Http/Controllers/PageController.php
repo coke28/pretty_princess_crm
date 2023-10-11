@@ -101,6 +101,7 @@ class PageController extends Controller
       'locations' => Location::where('status','1')->where('deleted','0')->get(),
       'categories' => Category::where('status','1')->where('deleted','0')->get(),
       'groups' => Group::where('status','1')->where('deleted','0')->get(),
+      'email_templates' => EmailTemplate::where('status','1')->where('deleted','0')->get(),
     ));
   }
 
@@ -229,7 +230,6 @@ class PageController extends Controller
       'groups' => Group::where('status','1')->where('deleted','0')->get(),
       'categories' => Category::where('status','1')->where('deleted','0')->get(),
       'locations' => Location::where('status','1')->where('deleted','0')->get(),
-      'email_templates' => EmailTemplate::where('status','1')->where('deleted','0')->get(),
     ));
   }
 
