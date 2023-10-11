@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CampaignUploadLogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CrmLogController;
+use App\Http\Controllers\EmailTemplateController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\LocationController;
@@ -121,7 +122,7 @@ Route::middleware('auth')->group(function () {
     Route::post('delete/{location}', [LocationController::class, 'locationDelete'])->name('location.delete');
   });
 
-    Route::group(['prefix' => 'group'], function () {
+  Route::group(['prefix' => 'group'], function () {
     //Form Routes
     Route::get('/', [PageController::class, 'manageGroup'])->name('group.index');
     Route::post('table', [GroupController::class, 'groupTB'])->name('group.table');
@@ -130,6 +131,17 @@ Route::middleware('auth')->group(function () {
     Route::post('edit/{group}', [GroupController::class, 'groupEdit'])->name('group.edit');
     Route::post('delete/{group}', [GroupController::class, 'groupDelete'])->name('group.delete');
   });
+
+  Route::group(['prefix' => 'emailTemplate'], function () {
+    //Form Routes
+    Route::get('/', [PageController::class, 'manageEmailTemplate'])->name('emailTemplate.index');
+    Route::post('table', [EmailTemplateController::class, 'emailTemplateTB'])->name('emailTemplate.table');
+    Route::post('add', [EmailTemplateController::class, 'emailTemplateAdd'])->name('emailTemplate.add');
+    Route::get('get/{email_template}', [EmailTemplateController::class, 'emailTemplateGet'])->name('emailTemplate.get');
+    Route::post('edit/{email_template}', [EmailTemplateController::class, 'emailTemplateEdit'])->name('emailTemplate.edit');
+    Route::post('delete/{email_template}', [EmailTemplateController::class, 'emailTemplateDelete'])->name('emailTemplate.delete');
+  });
+
 
   Route::group(['prefix' => 'crmLog'], function () {
     //Form Routes

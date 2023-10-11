@@ -97,8 +97,9 @@
           <div class="col-lg-12 fv-row">
             <select class="form-select" name="email_template" id="email_template">
               <option value="">Select Email Template to Send Emails with</option>
-              {{-- <option value="0">No</option>
-              <option value="1">Yes</option> --}}
+              @foreach ($email_templates as $email_templates )
+              <option value="{{ $email_templates->id }}">{{ $email_templates->category_name}}</option>
+              @endforeach
             </select>
           </div>
         </div>

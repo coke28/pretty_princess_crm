@@ -53,6 +53,7 @@ class RVNDevFunc
           'location.index',
           'group.index',
           'form.index',
+          'emailTemplate.index',
           'crmLog.index',
         ];
       }

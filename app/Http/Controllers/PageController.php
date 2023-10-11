@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CampaignUploadLog;
 use App\Models\Category;
+use App\Models\EmailTemplate;
 use App\Models\Group;
 use App\Models\Location;
 use Illuminate\Support\Facades\Auth;
@@ -173,6 +174,24 @@ class PageController extends Controller
     ));
   }
 
+  public function manageEmailTemplate()
+  {
+    // $hasAccess = $this->permissionCheck(auth()->user()->userlevel->n2_forms);
+    // if (!$hasAccess) {
+    //   if (Auth::check()) {
+    //     // The user is logged in...
+    //     return redirect()->route('user.dash');
+    //   } else {
+    //     return redirect()->route('get.login');
+    //   }
+    // }
+    return view('tools.manageEmailTemplates.view', array(
+      'pageTitle' => 'Manage Email Template',
+      'pageDescription' => '',
+    ));
+  }
+
+
 
 
 
@@ -210,6 +229,7 @@ class PageController extends Controller
       'groups' => Group::where('status','1')->where('deleted','0')->get(),
       'categories' => Category::where('status','1')->where('deleted','0')->get(),
       'locations' => Location::where('status','1')->where('deleted','0')->get(),
+      'email_templates' => EmailTemplate::where('status','1')->where('deleted','0')->get(),
     ));
   }
 
