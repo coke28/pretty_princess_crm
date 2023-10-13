@@ -7,6 +7,7 @@ use App\Mail\LeadEmail;
 use App\Models\EmailTemplate;
 use App\Models\Lead;
 use App\Services\LeadService;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -89,11 +90,31 @@ class LeadController extends Controller
         try {
             //code...
            
-            $leads = $this->leadService->leadTB($request);
+            // $leads = $this->leadService->leadTB($request);
+            $leads = DB::table('leads')
+            ->where('deleted', '0');
+
+            if (!empty($request->campaign_name_filter)) {
+                $leads = $leads->where('campaign_name', $request->campaign_name_filter);
+            }
+            if (!empty($request->campaign_group_filter)) {
+                $leads = $leads->where('group_id', $request->campaign_group_filter);
+            }
+            if (!empty($request->location_filter)) {
+                $leads = $leads->where('location_id', $request->location_filter);
+            }
+            if (!empty($request->category_filter)) {
+                $leads = $leads->where('category_id', $request->category_filter);
+            }
+            if (!empty($request->email_sent_filter)) {
+                $leads = $leads->where('email_sent', $request->email_sent_filter);
+            }
+
+            $leads = $leads->get();
             
             
             $email_template = EmailTemplate::where('id',$request->email_template)->first();
-            foreach($leads['data'] as $lead){
+            foreach($leads as $lead){
                 Mail::to($lead->email_address)->send(new LeadEmail($lead->company_name,$email_template));
             }
             
@@ -103,7 +124,7 @@ class LeadController extends Controller
         }
         return response()->json([
             'success' => true,
-            'message' => 'Lead edited successfully.',
+            'message' => 'Flagged Email to be Sent.',
         ], 200);
     }
 }
