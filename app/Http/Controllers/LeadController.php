@@ -104,7 +104,6 @@ class LeadController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Lead edited successfully.',
-            'leads' => $leads
         ], 200);
     }
 }

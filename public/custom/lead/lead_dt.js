@@ -218,7 +218,7 @@ KTUtil.onDOMContentLoaded(function () {
             icon: "info",
             buttonsStyling: false,
             showCancelButton: true,
-            confirmButtonText: "Delete",
+            confirmButtonText: "Send",
             cancelButtonText: "Cancel",
             customClass: {
                 confirmButton: "btn btn-primary",
@@ -250,7 +250,7 @@ KTUtil.onDOMContentLoaded(function () {
                         );
                     },
                     data: data, // Correctly using the data object
-                    success: function (data) {
+                    success: function (response) {
                         toastr.options = {
                             closeButton: false,
                             debug: false,
@@ -268,13 +268,14 @@ KTUtil.onDOMContentLoaded(function () {
                             showMethod: "fadeIn",
                             hideMethod: "fadeOut",
                         };
-                        data = JSON.parse(data);
-                        toastr.success(data.message, "Success");
+                        console.log(response)
+                        response = JSON.parse(response);
+                        toastr.success(response.message, "Success");
                         //  blockUI.release();
                         //  blockUI.destroy();
                         //  $('#lead_dt').DataTable().ajax.reload();
                     },
-                    error: function (data) {
+                    error: function (response) {
                         // Handle BACK END validation errors and display them to the user
                         toastr.options = {
                             closeButton: false,
@@ -293,8 +294,8 @@ KTUtil.onDOMContentLoaded(function () {
                             showMethod: "fadeIn",
                             hideMethod: "fadeOut",
                         };
-                        data = JSON.parse(data);
-                        toastr.error(data.message, "Fail");
+                        response = JSON.parse(response);
+                        toastr.error(response.message, "Fail");
                         blockUI.release();
                         blockUI.destroy();
                     },
