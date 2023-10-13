@@ -42,10 +42,12 @@ var KTDatatablesServerSide = (function () {
                 },
                 data: function (d) {
                     (d.campaign_name_filter = $("#campaign_name_filter").val()),
-                    (d.campaign_group_filter = $("#campaign_group_filter").val()),
-                    (d.location_filter = $("#location_filter").val()),
-                    (d.category_filter = $("#category_filter").val()),
-                    (d.email_sent_filter =$("#email_sent_filter").val());
+                        (d.campaign_group_filter = $(
+                            "#campaign_group_filter"
+                        ).val()),
+                        (d.location_filter = $("#location_filter").val()),
+                        (d.category_filter = $("#category_filter").val()),
+                        (d.email_sent_filter = $("#email_sent_filter").val());
                 },
             },
             language: {
@@ -139,12 +141,10 @@ var KTDatatablesServerSide = (function () {
     };
 })();
 
-
 // On document ready
 KTUtil.onDOMContentLoaded(function () {
     KTDatatablesServerSide.init();
     changeButtonStatus(false);
-
 
     jQuery(document).off("change", "#leadSearch");
     jQuery(document).on("change", "#leadSearch", function (e) {
@@ -190,7 +190,11 @@ KTUtil.onDOMContentLoaded(function () {
             return; // Exit the function
         }
         var email_template_value = $("#email_template").val();
-        if (email_template_value === null || email_template_value === undefined || email_template_value === "") {
+        if (
+            email_template_value === null ||
+            email_template_value === undefined ||
+            email_template_value === ""
+        ) {
             // Handle the case where there are no records
             Swal.fire({
                 text: "Please Select an Email Template to Use!",
@@ -204,7 +208,6 @@ KTUtil.onDOMContentLoaded(function () {
             changeButtonStatus(false);
             return; // Exit the function
         }
-
 
         Swal.fire({
             html:
@@ -228,25 +231,25 @@ KTUtil.onDOMContentLoaded(function () {
                 //       message: '<div class="blockui-message"><span class="spinner-border text-primary"></span> Loading...</div>',
                 //   });
                 //   blockUI.block();
+                var data = {
+                    campaign_name_filter: $("#campaign_name_filter").val(),
+                    campaign_group_filter: $("#campaign_group_filter").val(),
+                    location_filter: $("#location_filter").val(),
+                    category_filter: $("#category_filter").val(),
+                    email_sent_filter: $("#email_sent_filter").val(),
+                    email_template: $("#email_template").val(),
+                };
+                console.log(data.campaign_name_filter);
                 $.ajax({
                     url: "/lead/send",
                     type: "POST",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
-                    headers: {
-                        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                            "content"
-                        ),
+                    beforeSend: function (request) {
+                        request.setRequestHeader(
+                            "X-CSRF-TOKEN",
+                            $('meta[name="csrf-token"]').attr("content")
+                        );
                     },
-                    data: {
-                        campaign_name_filter : $("#campaign_name_filter").val(),
-                        campaign_group_filter : $("#campaign_group_filter").val(),
-                        location_filter : $("#location_filter").val(),
-                        category_filter : $("#category_filter").val(),
-                        email_sent_filter : $("#email_sent_filter").val(),
-                        email_template : $("#email_template").val(),
-                    },
+                    data: data, // Correctly using the data object
                     success: function (data) {
                         toastr.options = {
                             closeButton: false,
@@ -295,17 +298,14 @@ KTUtil.onDOMContentLoaded(function () {
                         blockUI.release();
                         blockUI.destroy();
                     },
-
                 });
             }
         });
         changeButtonStatus(false);
     });
 
-    function changeButtonStatus(boolean){
+    function changeButtonStatus(boolean) {
         document.getElementById("send_emails_btn").disabled = boolean;
         document.getElementById("lead_filter_btn").disabled = boolean;
-    };
-
-   
+    }
 });

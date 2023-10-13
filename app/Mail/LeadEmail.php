@@ -16,9 +16,15 @@ class LeadEmail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    public $company_name;
+    public $email_template;
+    public function __construct($company_name,$email_template)
     {
         //
+        $this->company_name = $company_name;
+        $this->email_template = $email_template;
+        
     }
 
     /**
@@ -28,6 +34,6 @@ class LeadEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('.emails.view');
+        return $this->markdown('.emails.view');
     }
 }

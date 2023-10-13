@@ -14,6 +14,9 @@ class LeadService
     {
         $this->crmLogService = $crmLogService;
     }
+    /**
+     * @return array
+     */
 
     public function leadTB(Request $request)
     {

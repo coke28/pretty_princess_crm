@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LeadRequest;
 use App\Mail\LeadEmail;
+use App\Models\EmailTemplate;
 use App\Models\Lead;
 use App\Services\LeadService;
 use Illuminate\Http\Request;
@@ -87,11 +88,15 @@ class LeadController extends Controller
     {
         try {
             //code...
-            dd($request->campaign_name_filter);
+           
             $leads = $this->leadService->leadTB($request);
-
-
-            // Mail::to('fake@gmai.com')->send(new LeadEmail());
+            
+            
+            $email_template = EmailTemplate::where('id',$request->email_template)->first();
+            foreach($leads['data'] as $lead){
+                Mail::to($lead->email_address)->send(new LeadEmail($lead->company_name,$email_template));
+            }
+            
         } catch (\Exception $exception) {
             //throw $ex;
             return response()->json(['error' => $exception->getMessage()], 422);
