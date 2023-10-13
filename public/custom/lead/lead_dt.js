@@ -269,7 +269,6 @@ KTUtil.onDOMContentLoaded(function () {
                             hideMethod: "fadeOut",
                         };
                         console.log(response)
-                        response = JSON.parse(response);
                         toastr.success(response.message, "Success");
                         //  blockUI.release();
                         //  blockUI.destroy();
@@ -294,7 +293,6 @@ KTUtil.onDOMContentLoaded(function () {
                             showMethod: "fadeIn",
                             hideMethod: "fadeOut",
                         };
-                        response = JSON.parse(response);
                         toastr.error(response.message, "Fail");
                         blockUI.release();
                         blockUI.destroy();
